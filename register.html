@@ -1,235 +1,161 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passenger Registration</title>
-    <style >
-    /* General styles */
-body {
-    background-color: teal;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
+    <title>Customer Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Style for the registration page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff; /* Simple white background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-.registration-container {
-    background-color: #f0f0f0;
-    color: black;
-    width: 100%;
-    max-width: 800px;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+        .register-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
+        h2 {
+            color: #007bff;
+            margin-bottom: 30px;
+        }
 
-.message {
-    text-align: center;
-    margin-bottom: 15px;
-}
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
 
-.error-message {
-    color: red;
-}
-
-.success-message {
-    color: green;
-}
-
-/* Grid layout for form fields */
-form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-}
-
-.input-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.input-group label {
-    margin-bottom: 5px;
-    font-weight: bold;
-} 
+        /* General input styles */
         .input-group input {
-    width: 70%; /* Adjust width as needed */
-    padding: 10px;
-    border: 1px solid #007BFF;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
-    font-size: 1rem;
-}
-/* .input-group input, */
-        .input-group select {
-    width: 70%; /* Adjust width as needed */
-    padding: 10px;
-    border: 1px solid #007BFF;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
-    font-size: 1rem;
-}
-/* .input-group select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-} */
+            width: 82%;
+            padding: 10px 10px 10px 40px; /* Left padding for icon */
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
 
-.input-group input:focus,
-.input-group select:focus {
-    border-color: #007BFF;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
-    outline: none;
-    background-color: #e6f2ff;
-}
+        /* Icon inside input field */
+        .input-group i {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: #007bff;
+        }
 
-/* Full width for the submit button */
-button {
-    grid-column: span 2;
-    width: 100%;
-    padding: 10px;
-    background-color: dodgerblue;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+        /* Submit Button */
+        .input-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
-button:hover {
-    background-color: cobalt;
-}
+        .input-group button:hover {
+            background-color: #0056b3;
+        }
 
-@media (max-width: 600px) {
-    /* Responsive layout for smaller screens */
-    form {
-        grid-template-columns: 1fr;
-    }
+        /* Register Link */
+        .login-link {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+        }
 
-    button {
-        grid-column: span 1;
-    }
-}
-    
+        .login-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Style for date picker */
+        .input-group input[type="date"] {
+            padding-left: 42px;
+        }
+
+        /* Additional styles for the form */
+        .input-group label {
+            font-size: 14px;
+            color: #555;
+            text-align: left;
+            display: block;
+            margin-bottom: 5px;
+        }
     </style>
 </head>
-
 <body>
-    <div class="registration-container">
-        <form id="registrationForm">
-            <h2>Passenger Registration</h2>
 
-            <!-- Display error or success messages -->
-            <div class="message">
-                
-            </div>
+    <div class="register-container">
+        <h2>Customer Register</h2>
 
-            <!-- Username field -->
+        <form action="customer_dashboard.html" method="POST">
+            <!-- First Name Input -->
             <div class="input-group">
-                <label for="userName">User Name</label>
-                <input type="text" id="userName" name="userName" placeholder="Enter your name" maxlength="50" required>
+                <i class="fas fa-user"></i>
+                <input type="text" name="first_name" placeholder="First Name" required>
             </div>
 
-            <!-- Password field -->
+            <!-- Last Name Input -->
             <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" maxlength="50" required>
+                <i class="fas fa-user"></i>
+                <input type="text" name="last_name" placeholder="Last Name" required>
             </div>
 
-            <!-- Role field -->
+            <!-- Email Input -->
             <div class="input-group">
-                <label for="role">Role</label>
-                <select id="role" name="role" required>
-                    <option value="Customer">Customer</option>
-                    <option value="Admin">Admin</option>
-                </select>
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="email" placeholder="Email ID" required>
             </div>
 
-            <!-- Customer Category field -->
+            <!-- Password Input -->
             <div class="input-group">
-                <label for="customerCategory">Customer Category</label>
-                <select id="customerCategory" name="customerCategory" required>
-                    <option value="Silver">Silver</option>
-                    <option value="Gold">Gold</option>
-                    <option value="Platinum">Platinum</option>
-                </select>
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" placeholder="Password" required>
             </div>
 
-            <!-- Phone field -->
+            <!-- Confirm Password Input -->
             <div class="input-group">
-                <label for="phone">Phone</label>
-                <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required pattern="[0-9]{10,15}">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="confirm_password" placeholder="Confirm Password" required>
             </div>
 
-            <!-- Email field -->
+            <!-- Mobile Number Input -->
             <div class="input-group">
-                <label for="emailId">Email</label>
-                <input type="email" id="emailId" name="emailId" placeholder="Enter your email" required maxlength="100">
+                <i class="fas fa-phone-alt"></i>
+                <input type="text" name="mobile_number" placeholder="Mobile Number" required>
             </div>
 
-            <!-- Address Line 1 -->
+            <!-- Date of Birth Input -->
             <div class="input-group">
-                <label for="address1">Address Line 1</label>
-                <input type="text" id="address1" name="address1" placeholder="Enter address line 1" required maxlength="100">
+                <i class="fas fa-calendar-alt"></i>
+                <input type="date" name="dob" required>
             </div>
 
-            <!-- Address Line 2 -->
+            <!-- Submit Button -->
             <div class="input-group">
-                <label for="address2">Address Line 2</label>
-                <input type="text" id="address2" name="address2" placeholder="Enter address line 2" maxlength="100">
+                <button type="submit">Register</button>
             </div>
-
-            <!-- City -->
-            <div class="input-group">
-                <label for="city">City</label>
-                <input type="text" id="city" name="city" placeholder="Enter your city" required maxlength="50">
-            </div>
-
-            <!-- State -->
-            <div class="input-group">
-                <label for="state">State</label>
-                <input type="text" id="state" name="state" placeholder="Enter your state" required maxlength="50">
-            </div>
-
-            <!-- Country -->
-            <div class="input-group">
-                <label for="country">Country</label>
-                <input type="text" id="country" name="country" placeholder="Enter your country" required maxlength="50">
-            </div>
-
-            <!-- Zip Code -->
-            <div class="input-group">
-                <label for="zipCode">Zip Code</label>
-                <input type="text" id="zipCode" name="zipCode" placeholder="Enter zip code" required pattern="[0-9]+" maxlength="6">
-            </div>
-
-            <!-- Date of Birth -->
-            <div class="input-group">
-                <label for="dob">Date of Birth</label>
-                <input type="date" id="dob" name="dob" required>
-            </div>
-
-            <!-- Submit button -->
-            <button type="submit">Register</button>
         </form>
-    </div>
-</body>
 
+        <!-- Login Link -->
+        <a href="customer_login.html" class="login-link">Already have an account? Login here</a>
+    </div>
+
+</body>
 </html>

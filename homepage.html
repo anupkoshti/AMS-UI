@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* General page styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff; /* Simple white background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            width: 100%;
+            background-color: #007bff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* Search section styling */
+        .search-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 900px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .search-container h2 {
+            color: #007bff;
+            margin-bottom: 30px;
+        }
+
+        /* Style for inputs in search */
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px 10px 10px 40px; /* Left padding for icon */
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .input-group i {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: #007bff;
+        }
+
+        .input-group .icon-separator {
+            font-size: 20px;
+            color: #007bff;
+            margin: 0 10px;
+            vertical-align: middle;
+        }
+
+        /* Aligning inputs into a single row */
+        .inputs-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 63px; /* Added gap for better spacing between inputs */
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        #departure-date{
+            width: 80%;
+        }
+
+        .inputs-row .input-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .input-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .input-group button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Table Styling */
+        table {
+            width: 95%;
+            margin-top: 30px;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        table th, table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        table td {
+            background-color: #f9f9f9;
+        }
+
+        .flight-table {
+            width: 92vw;
+        }
+
+        .filter-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .filter-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .inputs-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .search-container {
+                width: 90%;
+            }
+
+            table {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">
+            <h1>Flight Booking</h1>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="bookings.html">Bookings</a>
+            <a href="logout.html">Logout</a>
+            <a href="about.html">About</a>
+        </div>
+    </div>
+
+    <!-- Search Container -->
+    <div class="search-container">
+        <h2>Book Your Flight</h2>
+        
+        <form id="search-form">
+            <!-- Inputs Row (From, To, Date) -->
+            <div class="inputs-row">
+                <!-- From Input -->
+                <div class="input-group">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <input type="text" id="from-location" placeholder="From" required>
+                </div>
+
+                <!-- To Input -->
+                <div class="input-group">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <input type="text" id="to-location" placeholder="To" required>
+                </div>
+
+                <!-- Departure Date Input -->
+                <div class="input-group">
+                    <i class="fas fa-calendar-alt"></i>
+                    <input type="date" id="departure-date" required>
+                </div>
+            </div>
+
+            <!-- Search Button -->
+            <div class="input-group">
+                <button type="button" class="filter-btn" onclick="filterFlights()">Search Flights</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Flight Table -->
+    <div class="flight-table">
+        <table id="flights-table">
+            <thead>
+                <tr>
+                    <th>Flight No</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Departure Date</th>
+                    <th>Airline</th>
+                    <th>Price</th>
+                    <th>Seats Available</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>AI101</td>
+                    <td>New York</td>
+                    <td>London</td>
+                    <td>2024-12-01</td>
+                    <td>Air India</td>
+                    <td>$500</td>
+                    <td>30</td>
+                </tr>
+                <tr>
+                    <td>BA245</td>
+                    <td>Los Angeles</td>
+                    <td>Tokyo</td>
+                    <td>2024-12-02</td>
+                    <td>British Airways</td>
+                    <td>$650</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td>UA300</td>
+                    <td>San Francisco</td>
+                    <td>Paris</td>
+                    <td>2024-12-05</td>
+                    <td>United Airlines</td>
+                    <td>$450</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>AF402</td>
+                    <td>Miami</td>
+                    <td>Berlin</td>
+                    <td>2024-12-07</td>
+                    <td>Air France</td>
+                    <td>$550</td>
+                    <td>40</td>
+                </tr>
+                <tr>
+                    <td>DL500</td>
+                    <td>Chicago</td>
+                    <td>Dubai</td>
+                    <td>2024-12-10</td>
+                    <td>Delta Airlines</td>
+                    <td>$700</td>
+                    <td>60</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Filter flights based on search parameters
+        function filterFlights() {
+            var fromLocation = document.getElementById('from-location').value.toLowerCase();
+            var toLocation = document.getElementById('to-location').value.toLowerCase();
+            var departureDate = document.getElementById('departure-date').value;
+
+            // Get all rows in the table body
+            var rows = document.querySelectorAll("#flights-table tbody tr");
+
+            rows.forEach(function(row) {
+                var flightFrom = row.cells[1].innerText.toLowerCase();
+                var flightTo = row.cells[2].innerText.toLowerCase();
+                var flightDate = row.cells[3].innerText;
+
+                // Show or hide the row based on the search filter
+                if ((flightFrom.indexOf(fromLocation) !== -1 || fromLocation === '') &&
+                    (flightTo.indexOf(toLocation) !== -1 || toLocation === '') &&
+                    (flightDate.indexOf(departureDate) !== -1 || departureDate === '')) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

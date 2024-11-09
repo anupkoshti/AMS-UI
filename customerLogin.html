@@ -1,121 +1,117 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="login.css">
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <title>Customer Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
+        /* Style for the login page */
         body {
-            background-color: teal;
-            color: white;
+            font-family: Arial, sans-serif;
+            background-color: #fff; /* Simplified background (white) */
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
         }
 
         .login-container {
-            width: 420px;
-            background: transparent;
-            border: 2px solid white;
-            backdrop-filter: blur(30px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 20px;
+            background-color: white;
             padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
             text-align: center;
         }
 
+        h2 {
+            color: #007bff;
+            margin-bottom: 30px;
+        }
+
         .input-group {
+            position: relative;
             margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            border-bottom: 2px solid white;
-            padding-bottom: 10px;
         }
 
-        .input-group i {
-            margin-right: 10px;
-            color: white;
-            font-size: 24px;
-        }
-
+        /* General input styles */
         .input-group input {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            background: transparent;
-            color: white;
+            width: 82%;
+            padding: 10px 10px 10px 40px; /* Left padding for icon */
+            border-radius: 5px;
+            border: 1px solid #ccc;
             font-size: 16px;
         }
 
-        .input-group input:focus {
-            outline: none;
+        /* Icon inside input field */
+        .input-group i {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: #007bff;
         }
 
-        button {
+        /* Submit Button */
+        .input-group button {
             width: 100%;
             padding: 10px;
-            background-color: white;
-            color: teal;
+            background-color: #007bff;
+            color: white;
             border: none;
-            border-radius: 70px;
-            font-size: 18px;
+            border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
         }
 
-        button:hover {
-            background-color: black;
-            color: white;
+        .input-group button:hover {
+            background-color: #0056b3;
         }
 
-        .error-message {
-            color: red;
-            margin-bottom: 15px;
+        /* Register Link */
+        .register-link {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
         }
 
-        a {
-            color: white;
-        }
-
-        a:hover {
+        .register-link:hover {
             text-decoration: underline;
         }
     </style>
 </head>
-
 <body>
-    <div class="login-container">
-        <h3>Welcome to easyGo Airlines!</h3>
-        <form>
-            <div id="errorMsg" class="error-message">
-                <!-- <%
-                    // Display error message if there is one
-                    String errorMsg = (String) request.getAttribute("errorMsg");
-                    if (errorMsg != null) {
-                        out.print("<p>" + errorMsg + "</p>");
-                    }
-                %> -->
-            </div>
-            <div class="input-group">
-                <i class="bx bxs-user"></i>
-                <input type="text" name="userId" placeholder="User ID" maxlength="5" required>
-            </div>
-            <div class="input-group">
-                <i class="bx bxs-lock"></i>
-                <input type="password" name="password" placeholder="Password" maxlength="30" required>
-            </div>
-            <button type="submit">Login</button>
-            <p>New User? <a href="register.html">Register Yourself</a></p>
-        </form>
-    </div>
-</body>
 
+    <div class="login-container">
+        <h2>Customer Login</h2>
+
+        <form action="customer_dashboard.html" method="POST">
+            <!-- Username Input -->
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+
+            <!-- Password Input (without toggle) -->
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="input-group">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+
+        <!-- Register Link for Customer -->
+        <a href="customer_register.html" class="register-link">Don't have an account? Register here</a>
+    </div>
+
+</body>
 </html>

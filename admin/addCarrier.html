@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Carrier</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: teal;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            padding: 40px;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        main h1 {
+            margin-bottom: 30px;
+            color: darkslategray;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+        form{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        
+        .input-group input {
+    width: 70%; /* Adjust width as needed */
+    padding: 10px;
+    border: 1px solid #007BFF;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    font-size: 1rem;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+    background-color: #e6f2ff;
+}
+        
+        
+
+        .input-group {
+            width: 48%;
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            
+        }
+
+        button {
+            background-color: dodgerblue;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: cobalt;
+        }
+
+        footer {
+            background-color: #004080;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Add a New Airline Carrier</h1>
+    </header>
+
+    <main>
+        <form>
+            <!-- Carrier Name -->
+            <div class="input-group">
+                <label for="carrierName">Carrier Name:</label>
+                <input type="text" id="carrierName" name="carrierName" placeholder="Enter Carrier Name" maxlength="50" required>
+            </div>
+
+            <!-- Discount for 30 Days Advance Booking -->
+            <div class="input-group">
+                <label for="discount30">Discount for 30 Days Advance Booking (%):</label>
+                <input type="number" id="discount30" name="discount30" placeholder="Enter Discount %" min="0" max="100">
+            </div>
+
+            <!-- Discount for 60 Days Advance Booking -->
+            <div class="input-group">
+                <label for="discount60">Discount for 60 Days Advance Booking (%):</label>
+                <input type="number" id="discount60" name="discount60" placeholder="Enter Discount %" min="0" max="100">
+            </div>
+
+            <!-- Discount for 90 Days Advance Booking -->
+            <div class="input-group">
+                <label for="discount90">Discount for 90 Days Advance Booking (%):</label>
+                <input type="number" id="discount90" name="discount90" placeholder="Enter Discount %" min="0" max="100">
+            </div>
+
+            <!-- Bulk Booking Discount -->
+            <div class="input-group">
+                <label for="bulkDiscount">Bulk Booking Discount (%):</label>
+                <input type="number" id="bulkDiscount" name="bulkDiscount" placeholder="Enter Bulk Booking Discount %" min="0" max="100">
+            </div>
+
+            <!-- Refund for Ticket Cancellation 2 Days Before Travel -->
+            <div class="input-group">
+                <label for="refund2Days">Refund for Ticket Cancellation 2 Days Before Travel (%):</label>
+                <input type="number" id="refund2Days" name="refund2Days" placeholder="Enter Refund %" min="0" max="100">
+            </div>
+
+            <!-- Refund for Ticket Cancellation 10 Days Before Travel -->
+            <div class="input-group">
+                <label for="refund10Days">Refund for Ticket Cancellation 10 Days Before Travel (%):</label>
+                <input type="number" id="refund10Days" name="refund10Days" placeholder="Enter Refund %" min="0" max="100">
+            </div>
+
+            <!-- Refund for Ticket Cancellation 20 Days Before Travel -->
+            <div class="input-group">
+                <label for="refund20Days">Refund for Ticket Cancellation 20 Days Before Travel (%):</label>
+                <input type="number" id="refund20Days" name="refund20Days" placeholder="Enter Refund %" min="0" max="100">
+            </div>
+
+            <!-- Silver User Discount -->
+            <div class="input-group">
+                <label for="silverDiscount">Silver User Discount (%):</label>
+                <input type="number" id="silverDiscount" name="silverDiscount" placeholder="Enter Silver User Discount %" min="0" max="100">
+            </div>
+
+            <!-- Gold User Discount -->
+            <div class="input-group">
+                <label for="goldDiscount">Gold User Discount (%):</label>
+                <input type="number" id="goldDiscount" name="goldDiscount" placeholder="Enter Gold User Discount %" min="0" max="100">
+            </div>
+
+            <!-- Platinum User Discount -->
+            <div class="input-group">
+                <label for="platinumDiscount">Platinum User Discount (%):</label>
+                <input type="number" id="platinumDiscount" name="platinumDiscount" placeholder="Enter Platinum User Discount %" min="0" max="100">
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit">Add Carrier</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Airline Management System</p>
+    </footer>
+</body>
+
+</html>

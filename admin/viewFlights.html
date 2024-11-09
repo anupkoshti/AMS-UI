@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Flights</title>
+<style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        header {
+            background-color: teal;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .input-group input {
+        
+    width: 30%; /* Adjust width as needed */
+    padding: 10px;
+    border: 1px solid #007BFF;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    font-size: 1rem;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+    background-color: #e6f2ff;
+}
+
+        
+
+        
+
+        button {
+            background-color: dodgerblue;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: cobalt;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #004080;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+	<header>
+		<h1>Search Flights</h1>
+	</header>
+
+	<main> <!-- Flight Search Form -->
+	<form>
+		<div class="input-group">
+			<label for="origin">Origin:</label> <input type="text" id="origin"
+				name="origin" placeholder="Enter Origin" required>
+		</div>
+
+		<div class="input-group">
+			<label for="destination">Destination:</label> <input type="text"
+				id="destination" name="destination" placeholder="Enter Destination"
+				required>
+		</div>
+
+		<div class="input-group">
+			<label for="travelDate">Travel Date:</label> <input type="date"
+				id="travelDate" name="travelDate" required>
+		</div>
+
+		<button type="submit">Search Flights</button>
+	</form>
+
+	<!-- Display the search results -->
+	<table border="1" cellpadding="10" cellspacing="0"
+		style="margin-top: 20px;">
+		<thead>
+			<tr>
+				<th>Flight ID</th>
+				<th>Carrier Name</th>
+				<th>Origin</th>
+				<th>Destination</th>
+				<th>Airfare</th>
+				<th>Economy Seats</th>
+				<th>Business Seats</th>
+				<th>Executive Seats</th>
+				<th>Travel Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+			</tr>
+			<!-- <%
+				}
+				} else {
+			%> -->
+			<tr>
+				<td colspan="9">No flights found.</td>
+			</tr>
+			<!-- <%
+				}
+			%> -->
+		</tbody>
+	</table>
+
+	<!-- Error message handling -->
+	<div>
+		<!-- <%
+			String errorMessage = (String) request.getAttribute("errorMessage");
+			if (errorMessage != null) {
+				out.println("<p style='color: red;'>" + errorMessage + "</p>");
+			}
+		%> -->
+	</div>
+	</main>
+
+	<footer>
+		<p>© 2024 Airline Management System</p>
+	</footer>
+</body>
+</html>

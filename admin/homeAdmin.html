@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Home - Airline Management</title>
+<style>
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f4f4f4;
+}
+
+header {
+	background-color: teal;
+	color: white;
+	padding: 20px;
+	text-align: center;
+}
+
+header h1 {
+	margin: 0;
+	font-size: 28px;
+}
+
+header p {
+	margin-top: 8px;
+	font-size: 18px;
+	color: #b3d9ff;
+}
+
+nav {
+	background-color: #004080;
+	padding: 10px;
+}
+
+nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: space-around;
+}
+
+nav ul li {
+	margin-right: 20px;
+}
+
+nav ul li a {
+	color: white;
+	text-decoration: none;
+	font-size: 16px;
+	padding: 10px 20px;
+	background-color: #0059b3;
+	border-radius: 5px;
+	transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+	background-color: dodgerblue;
+}
+
+main {
+	padding: 40px;
+	text-align: center;
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+main h2 {
+	color: darkslategray;
+	margin-bottom: 30px;
+	font-size: 26px;
+}
+
+main ul li {
+	text-align: left;
+}
+
+.actions-list {
+	text-align: left;
+	margin: 0;
+	padding: 0;
+}
+
+.actions-list li {
+	margin-bottom: 15px;
+	font-size: 18px;
+	color: #333;
+}
+
+.actions-list strong {
+	color: #004080;
+}
+
+footer {
+	background-color: #004080;
+	color: white;
+	padding: 10px;
+	text-align: center;
+	position: relative;
+	bottom: 0;
+	width: 100%;
+}
+
+footer p {
+	margin: 0;
+}
+</style>
+</head>
+
+<body>
+	<header>
+		<h1>Welcome to Airline Management System (Admin)</h1>
+		<p>Admin Dashboard</p>
+	</header>
+
+	<nav>
+		<ul>
+			<li><a href="addCarrier.html">Add Carrier</a></li>
+			<li><a href="addFlight.html">Add Flight</a></li>
+			<li><a href="editCarrier.html">Edit Carrier</a></li>
+			<li><a href="#">Flight Cancellation - Refund Calculation</a></li>
+			<li><a href="viewCarriers.html">View Carriers</a></li>
+			<li><a href="viewFlights.html">View Flights</a></li>
+			<li><a href="editFlight.html">Edit Flights</a></li>
+		</ul>
+	</nav>
+
+	<main>
+	<h2>Admin Actions</h2>
+	<p>Please select an option from the navigation menu to perform an
+		action:</p>
+	<ul>
+		<li><strong>Add Carrier:</strong> Register a new airline carrier
+			to the system.</li>
+		<li><strong>Add Flight:</strong> Add a new flight to the system.</li>
+		<li><strong>Edit Carrier:</strong> Modify the details of an
+			existing carrier.</li>
+		<li><strong>Remove Carrier:</strong> Remove a carrier from the
+			system.</li>
+		<li><strong>Flight Cancellation - Refund Calculation:</strong>
+			Handle flight cancellations and calculate refund amounts.</li>
+		<li><strong>View Carriers:</strong> View the list of all
+			registered airline carriers.</li>
+		<li><strong>View Flights:</strong> View the list of all scheduled
+			flights.</li>
+		<li><strong>Edit Flights:</strong> Modify details of existing
+			flights.</li>
+	</ul>
+	</main>
+
+	<footer>
+		<p>&copy; 2024 Airline Management System</p>
+	</footer>
+</body>
+
+</html>

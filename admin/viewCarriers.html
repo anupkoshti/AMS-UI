@@ -1,0 +1,148 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Carriers</title>
+ <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        header {
+            background-color: teal;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        button {
+            background-color: dodgerblue;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: cobalt;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #004080;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+	<header>
+		<h1>All Carriers</h1>
+	</header>
+
+	<main> <!-- Step 1: Button to trigger request to see all carriers -->
+	<form>
+		<button type="submit">See All Carriers</button>
+	</form>
+
+	<!-- Step 2: Carrier Table will be displayed after the button is clicked -->
+	<table border="1" cellpadding="10" cellspacing="0"
+		style="margin-top: 20px;">
+		<thead>
+			<tr>
+				<th>Carrier ID</th>
+				<th>Carrier Name</th>
+				<th>30 Days Advance Discount</th>
+				<th>60 Days Advance Discount</th>
+				<th>90 Days Advance Discount</th>
+				<th>Bulk Booking Discount</th>
+				<th>Refund 2 Days Before</th>
+				<th>Refund 10 Days Before</th>
+				<th>Refund 20 Days Before</th>
+				<th>Silver Discount</th>
+				<th>Gold Discount</th>
+				<th>Platinum Discount</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		
+			<tr>
+				<td colspan="12">No carriers found.</td>
+			</tr>
+		
+		</tbody>
+	</table>
+	</main>
+
+	<footer>
+		<p>© 2024 Airline Management System</p>
+	</footer>
+</body>
+</html>

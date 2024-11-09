@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passenger Registration</title>
+    <style >
+    /* General styles */
+body {
+    background-color: teal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.registration-container {
+    background-color: #f0f0f0;
+    color: black;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.message {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.error-message {
+    color: red;
+}
+
+.success-message {
+    color: green;
+}
+
+/* Grid layout for form fields */
+form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+} 
+        .input-group input {
+    width: 70%; /* Adjust width as needed */
+    padding: 10px;
+    border: 1px solid #007BFF;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    font-size: 1rem;
+}
+/* .input-group input, */
+        .input-group select {
+    width: 70%; /* Adjust width as needed */
+    padding: 10px;
+    border: 1px solid #007BFF;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    font-size: 1rem;
+}
+/* .input-group select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+} */
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+    outline: none;
+    background-color: #e6f2ff;
+}
+
+/* Full width for the submit button */
+button {
+    grid-column: span 2;
+    width: 100%;
+    padding: 10px;
+    background-color: dodgerblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: cobalt;
+}
+
+@media (max-width: 600px) {
+    /* Responsive layout for smaller screens */
+    form {
+        grid-template-columns: 1fr;
+    }
+
+    button {
+        grid-column: span 1;
+    }
+}
+    
+    </style>
+</head>
+
+<body>
+    <div class="registration-container">
+        <form id="registrationForm">
+            <h2>Passenger Registration</h2>
+
+            <!-- Display error or success messages -->
+            <div class="message">
+                
+            </div>
+
+            <!-- Username field -->
+            <div class="input-group">
+                <label for="userName">User Name</label>
+                <input type="text" id="userName" name="userName" placeholder="Enter your name" maxlength="50" required>
+            </div>
+
+            <!-- Password field -->
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" maxlength="50" required>
+            </div>
+
+            <!-- Role field -->
+            <div class="input-group">
+                <label for="role">Role</label>
+                <select id="role" name="role" required>
+                    <option value="Customer">Customer</option>
+                    <option value="Admin">Admin</option>
+                </select>
+            </div>
+
+            <!-- Customer Category field -->
+            <div class="input-group">
+                <label for="customerCategory">Customer Category</label>
+                <select id="customerCategory" name="customerCategory" required>
+                    <option value="Silver">Silver</option>
+                    <option value="Gold">Gold</option>
+                    <option value="Platinum">Platinum</option>
+                </select>
+            </div>
+
+            <!-- Phone field -->
+            <div class="input-group">
+                <label for="phone">Phone</label>
+                <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required pattern="[0-9]{10,15}">
+            </div>
+
+            <!-- Email field -->
+            <div class="input-group">
+                <label for="emailId">Email</label>
+                <input type="email" id="emailId" name="emailId" placeholder="Enter your email" required maxlength="100">
+            </div>
+
+            <!-- Address Line 1 -->
+            <div class="input-group">
+                <label for="address1">Address Line 1</label>
+                <input type="text" id="address1" name="address1" placeholder="Enter address line 1" required maxlength="100">
+            </div>
+
+            <!-- Address Line 2 -->
+            <div class="input-group">
+                <label for="address2">Address Line 2</label>
+                <input type="text" id="address2" name="address2" placeholder="Enter address line 2" maxlength="100">
+            </div>
+
+            <!-- City -->
+            <div class="input-group">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" placeholder="Enter your city" required maxlength="50">
+            </div>
+
+            <!-- State -->
+            <div class="input-group">
+                <label for="state">State</label>
+                <input type="text" id="state" name="state" placeholder="Enter your state" required maxlength="50">
+            </div>
+
+            <!-- Country -->
+            <div class="input-group">
+                <label for="country">Country</label>
+                <input type="text" id="country" name="country" placeholder="Enter your country" required maxlength="50">
+            </div>
+
+            <!-- Zip Code -->
+            <div class="input-group">
+                <label for="zipCode">Zip Code</label>
+                <input type="text" id="zipCode" name="zipCode" placeholder="Enter zip code" required pattern="[0-9]+" maxlength="6">
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="input-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
+
+</html>

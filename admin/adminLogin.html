@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Login</title>
+    <title>Admin Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         /* Style for the login page */
@@ -71,17 +71,12 @@
             background-color: #0056b3;
         }
 
-        /* Register Link */
-        .register-link {
-            display: block;
-            margin-top: 10px;
+        /* Error Message */
+        .error-message {
+            color: red;
             font-size: 14px;
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .register-link:hover {
-            text-decoration: underline;
+            display: none;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -90,18 +85,21 @@
     <div class="login-container">
         <h2>Admin Login</h2>
 
-        <form action="customer_dashboard.html" method="POST">
+        <form id="loginForm" action="admin_dashboard.html" method="POST">
             <!-- Username Input -->
             <div class="input-group">
                 <i class="fas fa-user"></i>
-                <input type="text" name="username" placeholder="Username" required>
+                <input type="text" id="username" name="username" placeholder="Username" required>
             </div>
 
-            <!-- Password Input (without toggle) -->
+            <!-- Password Input -->
             <div class="input-group">
                 <i class="fas fa-lock"></i>
-                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
             </div>
+
+            <!-- Error Message -->
+            <div class="error-message" id="errorMessage">Invalid username or password</div>
 
             <!-- Submit Button -->
             <div class="input-group">
@@ -109,6 +107,21 @@
             </div>
         </form>
     </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("errorMessage");
+
+            if (username !== "admin" || password !== "admin123") {
+                event.preventDefault(); // Prevent form submission
+                errorMessage.style.display = "block"; // Show error message
+            } else {
+                errorMessage.style.display = "none"; // Hide error message if credentials are correct
+            }
+        });
+    </script>
 
 </body>
 </html>

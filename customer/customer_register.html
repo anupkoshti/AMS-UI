@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Style for the registration page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff; /* Simple white background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .register-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        /* Error message styling */
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: none; /* Hidden by default */
+        }
+
+        h2 {
+            color: #007bff;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            width: 82%;
+            padding: 10px 10px 10px 40px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .input-group i {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: #007bff;
+        }
+
+        .input-group input.invalid {
+            border-color: red;
+        }
+
+        .input-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .input-group button:hover {
+            background-color: #0056b3;
+        }
+
+        .login-link {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .login-link:hover {
+            text-decoration: underline;
+        }
+
+        .input-group input[type="date"] {
+            padding-left: 42px;
+        }
+
+                /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4); /* Black background with transparency */
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #007bff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        .navbar .logo {
+            margin-left: 20px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar .logo i {
+            font-size: 20px;
+            color: #ffffff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            margin-right: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #d3e2ff;
+        }
+
+        /* Adjust the login-container position to avoid overlapping with navbar */
+        .login-container {
+            margin-top: 80px; /* Add top margin to prevent overlap */
+        }
+            
+        .modal-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px; /* Space between buttons */
+        margin-top: 20px;
+        }
+
+        .modal-buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <!-- Logo or Title Section -->
+        <div class="logo">
+           Flight Booking
+        </div>
+        
+        <!-- Navigation Links -->
+        <div class="nav-links">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="help.html"><i class="fas fa-question-circle"></i> Help</a>
+            <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+        </div>
+    </div>
+
+
+    <div class="register-container">
+        <!-- Error message container -->
+        <!-- <div class="error-message" id="error-message"></div> -->
+        <!-- Error Message Display -->
+        <div id="error-message" style="color: red; display: none;"></div>
+
+        <h2>Customer Register</h2>
+
+        <form id="registerForm" onsubmit="validateForm(event); event.preventDefault();">
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" name="first_name" placeholder="First Name" required>
+            </div>
+
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" name="last_name" placeholder="Last Name" required>
+            </div>
+
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="email" placeholder="Email ID" required>
+            </div>
+
+            <!-- Password Input -->
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+            </div>
+
+            <!-- Confirm Password Input -->
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
+            </div>
+
+
+            <!-- Mobile Number Input -->
+            <div class="input-group">
+                <i class="fas fa-phone-alt"></i>
+                <input type="text" name="mobile_number" id="mobile_number" placeholder="Mobile Number" maxlength="10" required>
+            </div>
+
+
+            <div class="input-group">
+                <i class="fas fa-calendar-alt"></i>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+
+            <div class="input-group">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+
+        <a href="customerLogin.html" class="login-link">Already have an account? Login here</a>
+    </div>
+
+    <div id="successModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Registration Successful!</h2>
+            <p>Your registration has been completed successfully.</p>
+            <!-- Buttons for navigation -->
+            <div class="modal-buttons">
+                <button onclick="goToHomePage()">Go to Home Page</button>
+                <button onclick="backToLogin()">Back to Login</button>
+            </div>
+        </div>
+    </div>
+    
+
+    <script>
+        
+        document.addEventListener("DOMContentLoaded", () => {
+        const dobInput = document.getElementById("dob");
+        const today = new Date();
+        const eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+        dobInput.max = eighteenYearsAgo.toISOString().split("T")[0];
+    });
+
+document.getElementById("mobile_number").addEventListener("input", function (e) {
+    e.target.value = e.target.value.replace(/[^0-9]/g, "").slice(0, 10);
+});
+
+
+
+
+
+
+
+function validateForm() {
+    let isValid = true;
+    const firstName = document.querySelector("input[name='first_name']");
+    const lastName = document.querySelector("input[name='last_name']");
+    const email = document.querySelector("input[name='email']");
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirm_password");
+    const mobileNumber = document.querySelector("input[name='mobile_number']");
+    const dob = document.querySelector("input[name='dob']");
+    const errorMessage = document.getElementById("error-message");
+
+    // Reset error message
+    errorMessage.style.display = "none";
+    errorMessage.textContent = "";
+
+    // Check if fields are empty
+    [firstName, lastName, email, password, confirmPassword, mobileNumber, dob].forEach((input) => {
+        if (!input.value) {
+            input.style.border = "1px solid red";
+            isValid = false;
+        } else {
+            input.style.border = "";
+        }
+    });
+
+    // Validate DOB for age 18+
+    const today = new Date();
+    const selectedDate = new Date(dob.value);
+    const ageLimitDate = new Date();
+    ageLimitDate.setFullYear(today.getFullYear() - 18);
+    if (selectedDate > today || selectedDate > ageLimitDate) {
+        errorMessage.textContent = "You must be at least 18 years old.";
+        errorMessage.style.display = "block";
+        dob.style.border = "1px solid red";
+        isValid = false;
+    }
+
+    // Validate mobile number
+    const mobileRegex = /^\d{10}$/;
+    if (!mobileRegex.test(mobileNumber.value) || /^0+$/.test(mobileNumber.value)) {
+        errorMessage.textContent = "Mobile number must be exactly 10 digits and not all zeroes.";
+        errorMessage.style.display = "block";
+        mobileNumber.style.border = "1px solid red";
+        isValid = false;
+    }
+
+    // Validate password and confirm password
+    if (password.value !== confirmPassword.value) {
+        errorMessage.textContent = "Passwords do not match.";
+        errorMessage.style.display = "block";
+        password.style.border = "1px solid red";
+        confirmPassword.style.border = "1px solid red";
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+document.getElementById("registerForm").addEventListener("submit", function (e) {
+    if (!validateForm()) {
+        e.preventDefault(); // Prevent form submission if validation fails
+    }
+    else {
+        registerUser();
+        e.preventDefault();
+    }
+});
+
+
+// Show modal when registration is successful
+function registerUser() {
+
+    const email = document.querySelector("input[name='email']").value;
+    const password = document.getElementById("password").value;
+
+    // Store email and password in local storage
+    localStorage.setItem("userEmail", email);
+    localStorage.setItem("userPassword", password);
+
+    const successModal = document.getElementById("successModal");
+    successModal.style.display = "block";  // Show the modal
+}
+
+// Close modal
+function closeModal() {
+    const successModal = document.getElementById("successModal");
+    successModal.style.display = "none";  // Hide the modal
+}
+
+function goToHomePage() {
+    // Redirect to the home page
+    window.location.href = "../homepage.html"; // Replace with your actual home page URL
+}
+
+function backToLogin() {
+    // Redirect to the login page
+    window.location.href = "customerLogin.html"; // Replace with your actual login page URL
+}
+
+
+    </script>
+</body>
+</html>

@@ -3,13 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    
-    <!-- Link to Font Awesome for Icons -->
+    <title>Main Login Option</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
     <style>
-        /* Set up the background */
+        /* General styling for page */
         body {
             margin: 0;
             padding: 0;
@@ -17,11 +14,59 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            position: relative;
+            font-family: Arial, sans-serif;
         }
 
-        /* Create the blurred background image */
+        /* Navbar styling */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #003366;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            z-index: 2;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            margin-left: 20px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar .logo i {
+            font-size: 20px;
+            color: #ffffff;
+        }
+
+        /* Nav-links container */
+        .nav-links {
+            display: flex;
+            gap: 20px; /* Space between links */
+        }
+
+        .nav-links a {
+            margin-right: 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #cccccc;
+        }
+
+        /* Background and content */
         .background {
             position: absolute;
             top: 0;
@@ -31,26 +76,35 @@
             background-image: url('plane.jpg');
             background-size: cover;
             background-position: center;
-            filter: blur(8px); /* Apply blur only to the background */
-            z-index: -1; /* Ensure the background stays behind the content */
+            filter: blur(6px);
+            z-index: -1;
         }
 
-        /* Create a container for the cards */
+        .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        /* Container for login cards */
         .container {
             display: flex;
             justify-content: space-between;
             width: 60%;
-            z-index: 1; /* Cards should appear above the background */
-            gap: 20px; /* Add space between the two cards */
+            z-index: 1;
+            gap: 20px;
         }
 
         /* Style for each card */
         .card {
-            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            background: rgba(255, 255, 255, 0.9);
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 45%; /* Set card width */
+            width: 45%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -70,6 +124,7 @@
             border-radius: 5px;
             margin-top: 10px;
             text-align: center;
+            transition: background-color 0.3s;
         }
 
         .card a:hover {
@@ -79,21 +134,26 @@
         .card .icon {
             font-size: 40px;
             margin-bottom: 20px;
-            color: #007bff; /* Color for the icons */
-        }
-
-        /* Additional style to make the content clearer */
-        .content {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.3); /* Darken background behind the content */
+            color: #007bff;
         }
     </style>
 </head>
 <body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <!-- Logo Section -->
+        <div class="logo">
+            Flight Booking System
+        </div>
+
+        <!-- Links Section -->
+        <div class="nav-links">
+            <a href="index.html"><i class="fas fa-home"></i>Home</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i>About</a>
+            <a href="contact.html"><i class="fas fa-envelope"></i>Contact</a>
+        </div>
+    </div>
 
     <!-- Background image with blur effect -->
     <div class="background"></div>
@@ -105,15 +165,13 @@
     <div class="container">
         <!-- Customer login card -->
         <div class="card">
-            <!-- Icon for customer login -->
             <i class="fas fa-user-circle icon"></i>
             <h2>Customer Login</h2>
-            <a href="customerLogin.html">Go to Customer Login</a>
+            <a href="customer/customerLogin.html">Go to Customer Login</a>
         </div>
 
         <!-- Admin login card -->
         <div class="card">
-            <!-- Icon for admin login -->
             <i class="fas fa-user-shield icon"></i>
             <h2>Admin Login</h2>
             <a href="admin/adminLogin.html">Go to Admin Login</a>

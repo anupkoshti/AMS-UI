@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <style>
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            text-align: left;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .details {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Booking Confirmation</h2>
+        <div class="details" id="bookingDetails">
+            <!-- Booking and passenger details will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        const bookingData = JSON.parse(localStorage.getItem('bookingData'));
+        const passengerData = JSON.parse(localStorage.getItem('passengerData'));
+
+        document.getElementById('bookingDetails').innerHTML = `
+            <h3>Flight Details</h3>
+            <p><strong>Flight No:</strong> ${bookingData.flightNo}</p>
+            <p><strong>From:</strong> ${bookingData.from} <strong>To:</strong> ${bookingData.to}</p>
+            <p><strong>Date of Travel:</strong> ${bookingData.date}</p>
+            <p><strong>Airline:</strong> ${bookingData.airline}</p>
+            <p><strong>Price:</strong> ${bookingData.price}</p>
+
+            <h3>Passenger Details</h3>
+            <p><strong>Title:</strong> ${passengerData.title}</p>
+            <p><strong>First Name:</strong> ${passengerData.firstName}</p>
+            <p><strong>Last Name:</strong> ${passengerData.lastName}</p>
+            <p><strong>Date of Birth:</strong> ${passengerData.dob}</p>
+
+            <h3>Contact Details</h3>
+            <p><strong>Email:</strong> ${passengerData.email}</p>
+            <p><strong>Mobile:</strong> ${passengerData.mobile}</p>
+        `;
+    </script>
+</body>
+</html>

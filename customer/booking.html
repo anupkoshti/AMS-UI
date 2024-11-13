@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking</title>
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Fixed navbar styling */
+        .navbar {
+            height: 50px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: dodgerblue;
+            padding: 10px;
+            color: white;
+            z-index: 1000;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        .navbar a:hover {
+            background-color: #1a73e8;
+            border-radius: 5px;
+        }
+
+        /* Container styling */
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            text-align: left;
+            margin-top: 80px; /* To make space for the fixed navbar */
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .flight-details {
+            margin-bottom: 20px;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: dodgerblue;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <!-- Left side links -->
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="search.html">Search Flights</a>
+            <a href="bookings.html">My Bookings</a>
+        </div>
+        <!-- Right side logout link -->
+        <a href="logout.html">Logout</a>
+    </div>
+
+    <!-- Booking Form -->
+    <div class="container">
+        <h2>Flight Booking</h2>
+        <div class="flight-details" id="flightDetails">
+            <!-- Flight details will be populated here -->
+        </div>
+        <form id="bookingForm">
+            <h3>Passenger Details</h3>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required>
+
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" required>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <h3>Contact Details</h3>
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="mobile">Mobile Number</label>
+            <input type="tel" id="mobile" name="mobile" required>
+
+            <button type="submit" class="submit-btn">Submit Booking</button>
+        </form>
+    </div>
+
+    <script>
+        const bookingData = JSON.parse(localStorage.getItem('bookingData'));
+
+        document.getElementById('flightDetails').innerHTML = `
+            <p><strong>Flight No:</strong> ${bookingData.flightNo}</p>
+            <p><strong>From:</strong> ${bookingData.from} <strong>To:</strong> ${bookingData.to}</p>
+            <p><strong>Date of Travel:</strong> ${bookingData.date}</p>
+            <p><strong>Airline:</strong> ${bookingData.airline}</p>
+            <p><strong>Price:</strong> ${bookingData.price}</p>
+        `;
+
+        document.getElementById('bookingForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const passengerData = {
+                title: document.getElementById('title').value,
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                dob: document.getElementById('dob').value,
+                email: document.getElementById('email').value,
+                mobile: document.getElementById('mobile').value
+            };
+
+            // Save booking and passenger details to localStorage
+            localStorage.setItem('passengerData', JSON.stringify(passengerData));
+
+            // Redirect to confirmation page
+            window.location.href = 'bookingConfirmation.html';
+        });
+    </script>
+</body>
+</html>

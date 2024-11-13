@@ -5,6 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Available Flights</title>
     <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: dodgerblue;
+            padding: 10px;
+            color: white;
+            width: 100%;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        .navbar a:hover {
+            background-color: #1a73e8;
+            border-radius: 5px;
+        }
+
+        /* Container styling */
+        .container {
+            padding: 20px;
+            text-align: center;
+            margin-top: 60px; /* To make space for the navbar */
+        }
+
         /* Basic table styling */
         table {
             width: 100%;
@@ -23,13 +65,34 @@
             color: white;
         }
 
-        .container {
-            padding: 20px;
-            text-align: center;
+        /* Style for the Book button */
+        .book-btn {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .book-btn:hover {
+            background-color: darkgreen;
         }
     </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <!-- Left side links -->
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="search.html">Search Flights</a>
+            <a href="bookings.html">My Bookings</a>
+        </div>
+        <!-- Right side logout link -->
+        <a href="logout.html">Logout</a>
+    </div>
+
+    <!-- Flight Table -->
     <div class="container">
         <h2>Available Flights</h2>
         <table id="flightsTable">
@@ -42,6 +105,7 @@
                     <th>Airline</th>
                     <th>Price</th>
                     <th>Seats</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody id="flightsTableBody">
@@ -59,24 +123,18 @@
             { flightNo: 'DL500', from: 'Chicago', to: 'Dubai', date: '2024-12-10', airline: 'Delta Airlines', price: '$700', seats: 60 }
         ];
 
-        // Retrieve search data from localStorage
         const searchData = JSON.parse(localStorage.getItem('flightSearchData'));
 
-        // Function to filter flights
         function displayFlights() {
             const tableBody = document.getElementById('flightsTableBody');
 
-            // Filter flights based on search data
             const filteredFlights = flights.filter(flight => {
-            return (
-                flight.from.toLowerCase().trim() === searchData.from.toLowerCase().trim() &&
-                flight.to.toLowerCase().trim() === searchData.to.toLowerCase().trim()
-                // flight.date === searchData.departureDate
-            );
-    });
+                return (
+                    flight.from.toLowerCase().trim() === searchData.from.toLowerCase().trim() &&
+                    flight.to.toLowerCase().trim() === searchData.to.toLowerCase().trim()
+                );
+            });
 
-
-            // Populate table with filtered flights
             if (filteredFlights.length > 0) {
                 filteredFlights.forEach(flight => {
                     const row = `<tr>
@@ -87,16 +145,21 @@
                         <td>${flight.airline}</td>
                         <td>${flight.price}</td>
                         <td>${flight.seats}</td>
+                        <td><button class="book-btn" onclick="bookFlight('${flight.flightNo}', '${flight.from}', '${flight.to}', '${flight.date}', '${flight.airline}', '${flight.price}')">Book</button></td>
                     </tr>`;
                     tableBody.insertAdjacentHTML('beforeend', row);
                 });
             } else {
-                // If no flights found, show a message
-                tableBody.innerHTML = '<tr><td colspan="7">No flights available for the selected route and date.</td></tr>';
+                tableBody.innerHTML = '<tr><td colspan="8">No flights available for the selected route and date.</td></tr>';
             }
         }
 
-        // Display flights on page load
+        function bookFlight(flightNo, from, to, date, airline, price) {
+            const bookingData = { flightNo, from, to, date, airline, price };
+            localStorage.setItem('bookingData', JSON.stringify(bookingData));
+            window.location.href = 'booking.html';
+        }
+
         window.onload = displayFlights;
     </script>
 </body>

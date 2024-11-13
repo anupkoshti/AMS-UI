@@ -7,183 +7,178 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Home - Easy Go AMS</title>
 <style>
-header {
-	background-color: dodgerblue;
-	padding: 15px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+    header {
+		height: 20px;
+        background-color: dodgerblue;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .nav-links {
+        list-style-type: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-links li {
+        margin-right: 20px;
+    }
+
+    .nav-links li a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        padding: 10px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .nav-links li a:hover {
+        background-color: #00796b;
+        color: white;
+    }
+
+    .welcome-text {
+        color: white;
+        font-size: 16px;
+        margin-right: 30px;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    main {
+        padding: 100px 20px 20px; /* Adjust padding to accommodate fixed header */
+        text-align: center;
+    }
+
+    h2 {
+        color: darkslategray;
+        margin-bottom: 20px;
+    }
+
+    .search-container {
+        background-color: white;
+        border-radius: 10px;
+        padding: 43px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+        text-align: left;
+    }
+
+    .search-container form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .search-container label {
+        margin-top: 10px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .search-container input,
+    .search-container select {
+        margin-bottom: 20px;
+        padding: 10px;
+        width: 350px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .search-container button {
+        background-color: dodgerblue;
+        color: white;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .search-container button:hover {
+        background-color: #005fbf;
+    }
+
+	.right-links {
+    display: flex;
+    align-items: center;
 }
 
-.nav-links {
-	list-style-type: none;
-	display: flex;
-	margin: 0;
-	padding: 0;
+.logout {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    margin-right: 15px;
 }
 
-.nav-links li {
-	margin-right: 20px;
-}
-
-.nav-links li a {
-	color: white;
-	text-decoration: none;
-	font-size: 16px;
-	padding: 10px 15px;
-	border-radius: 5px;
-	transition: background-color 0.3s, color 0.3s;
-}
-
-.nav-links li a:hover {
-	background-color: #00796b;
-	color: white;
+.logout:hover {
+    background-color: #00796b;
+    color: white;
 }
 
 .welcome-text {
-	color: white;
-	font-size: 16px;
+    color: white;
+    font-size: 16px;
 }
 
-.navbar {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	width: 100%;
-}
-
-.menu-toggle {
-	display: none;
-	font-size: 26px;
-	cursor: pointer;
-	color: white;
-}
-
-@media ( max-width : 768px) {
-	.nav-links {
-		flex-direction: column;
-		display: none;
-		width: 100%;
-		background-color: dodgerblue;
-	}
-	.nav-links li {
-		margin: 10px 0;
-	}
-	.nav-links.show {
-		display: flex;
-	}
-	.menu-toggle {
-		display: block;
-	}
-}
-
-body {
-	font-family: Arial, sans-serif;
-	margin: 0;
-	padding: 0;
-	background-color: #f4f4f4;
-}
-
-main {
-	padding: 20px;
-	text-align: center;
-}
-
-h2 {
-	color: darkslategray;
-	margin-bottom: 20px;
-}
-
-form {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-}
-
-.input-group {
-	width: 48%;
-	margin-bottom: 20px;
-}
-
-.search-container {
-	background-color: white;
-	border-radius: 10px;
-	padding: 43px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	display: inline-block;
-	text-align: left;
-}
-
-.search-container form {
-	display: flex;
-	flex-direction: column;
-}
-
-.search-container label {
-    margin-top :10px;
-	font-weight: bold;
-	margin-bottom: 10px;
-}
-
-.search-container input, .search-container select {
-	margin-bottom: 20px;
-	padding: 10px;
-	width: 350px; border : 1px solid #ccc;
-	border-radius: 5px;
-	font-size: 14px;
-	border: 1px solid #ccc;
-}
-
-.search-container button {
-	background-color: dodgerblue;
-	color: white;
-	border: none;
-	padding: 10px;
-	font-size: 16px;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
-}
-
-.search-container button:hover {
-	background-color: cobalt;
-}
 </style>
 </head>
 
 <body>
-	<header>
-		<nav>
-			<ul class="nav-links">
+    <header>
+        <div class="navbar">
+            <ul class="nav-links">
 				<li><a href="home.html">Home</a></li>
-				<!-- Call MyProfileServlet directly when My Profile is clicked -->
 				<li><a href="myProfile.html">My Profile</a></li>
 				<li><a href="myTrips.html">My Trips</a></li>
-				<li><a href="#">Logout</a></li>
-				<span class="welcome-text">Welcome userId
-				</span>
 			</ul>
-		</nav>
-	</header>
+			<div class="right-links">
+				<a href="#" class="logout">Logout</a>
+				<span class="welcome-text">Welcome <span id="username-display"></span></span>
+			</div>
+        </div>
+    </header>
 
-	<main>
+    <main>
         <h2>Welcome to easyGo</h2>
         <div class="search-container">
             <form id="searchForm" onsubmit="searchFlights(event)">
-                <!-- Form content as before -->
-                <label for="from">From:</label> 
+                <label for="from">From:</label>
                 <input type="text" id="from" name="from" placeholder="Enter Departure City" required>
 
-                <label for="to">To:</label> 
+                <label for="to">To:</label>
                 <input type="text" id="to" name="to" placeholder="Enter Destination City" required>
 
-                <label for="departureDate">Departure Date:</label> 
+                <label for="departureDate">Departure Date:</label>
                 <input type="date" id="departureDate" name="departureDate" required>
 
-                <label for="travellers">No. of Travellers:</label> 
+                <label for="travellers">No. of Travellers:</label>
                 <input type="number" id="travellers" name="travellers" min="1" max="10" required>
 
-                <label for="class">Class:</label> 
+                <label for="class">Class:</label>
                 <select id="class" name="class" required>
                     <option value="Economy">Economy</option>
                     <option value="Business">Business</option>
@@ -196,17 +191,26 @@ form {
     </main>
 
     <script>
-        function searchFlights(event) {
-            event.preventDefault(); // Prevent form submission
 
-            // Get form values
+		document.addEventListener("DOMContentLoaded", ()=> {
+			const userName = localStorage.getItem("userFirstName")
+			if(userName) {
+				document.getElementById("username-display").textContent = userName;
+			}
+			else {
+				document.getElementById("username-display").textContent = "Guest";
+			}
+		})
+
+        function searchFlights(event) {
+            event.preventDefault();
+
             const from = document.getElementById('from').value;
             const to = document.getElementById('to').value;
             const departureDate = document.getElementById('departureDate').value;
             const travellers = document.getElementById('travellers').value;
             const flightClass = document.getElementById('class').value;
 
-            // Store form data in localStorage
             localStorage.setItem('flightSearchData', JSON.stringify({
                 from,
                 to,
@@ -215,7 +219,6 @@ form {
                 flightClass
             }));
 
-            // Redirect to viewFlights.html
             window.location.href = 'viewFlights.html';
         }
     </script>

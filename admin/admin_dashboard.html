@@ -3,159 +3,174 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Home - Airline Management</title>
-<style>
-body {
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	margin: 0;
-	padding: 0;
-	background-color: #f4f4f4;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Home - Airline Management</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e8f0fe;
+        }
 
-header {
-	background-color: teal;
-	color: white;
-	padding: 20px;
-	text-align: center;
-}
+        header {
+            background-color: #2C3E50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-header h1 {
-	margin: 0;
-	font-size: 28px;
-}
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+            font-weight: 600;
+        }
 
-header p {
-	margin-top: 8px;
-	font-size: 18px;
-	color: #b3d9ff;
-}
+        header p {
+            margin-top: 5px;
+            font-size: 18px;
+            color: #A1C6EA;
+        }
 
-nav {
-	background-color: #004080;
-	padding: 10px;
-}
+        /* Navigation Styles */
+        nav {
+            background-color: #34495E;
+            padding: 15px 0;
+        }
 
-nav ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	display: flex;
-	justify-content: space-around;
-}
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
 
-nav ul li {
-	margin-right: 20px;
-}
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 12px 20px;
+            background-color: #5D6D7E;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
 
-nav ul li a {
-	color: white;
-	text-decoration: none;
-	font-size: 16px;
-	padding: 10px 20px;
-	background-color: #0059b3;
-	border-radius: 5px;
-	transition: background-color 0.3s ease;
-}
+        nav ul li a:hover {
+            background-color: #2980B9;
+            transform: translateY(-2px);
+        }
 
-nav ul li a:hover {
-	background-color: dodgerblue;
-}
+        /* Main Content Styles */
+        main {
+            padding: 40px;
+            text-align: center;
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
 
-main {
-	padding: 40px;
-	text-align: center;
-	max-width: 800px;
-	margin: 0 auto;
-}
+        main h2 {
+            color: #2C3E50;
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: 500;
+        }
 
-main h2 {
-	color: darkslategray;
-	margin-bottom: 30px;
-	font-size: 26px;
-}
+        main p {
+            font-size: 18px;
+            color: #7F8C8D;
+            margin-bottom: 30px;
+        }
 
-main ul li {
-	text-align: left;
-}
+        main ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
 
-.actions-list {
-	text-align: left;
-	margin: 0;
-	padding: 0;
-}
+        .actions-list li {
+            margin-bottom: 18px;
+            font-size: 18px;
+            color: #34495E;
+            padding-left: 20px;
+            text-align: left;
+            position: relative;
+        }
 
-.actions-list li {
-	margin-bottom: 15px;
-	font-size: 18px;
-	color: #333;
-}
+        .actions-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #2980B9;
+        }
 
-.actions-list strong {
-	color: #004080;
-}
+        .actions-list strong {
+            color: #1ABC9C;
+            font-weight: 600;
+        }
 
-footer {
-	background-color: #004080;
-	color: white;
-	padding: 10px;
-	text-align: center;
-	position: relative;
-	bottom: 0;
-	width: 100%;
-}
+        /* Footer Styles */
+        footer {
+            background-color: #34495E;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
 
-footer p {
-	margin: 0;
-}
-</style>
+        footer p {
+            margin: 0;
+        }
+
+    </style>
 </head>
 
 <body>
-	<header>
-		<h1>Welcome to Airline Management System (Admin)</h1>
-		<p>Admin Dashboard</p>
-	</header>
+    <header>
+        <h1>Welcome to Airline Management System (Admin)</h1>
+        <p>Admin Dashboard</p>
+    </header>
 
-	<nav>
-		<ul>
-			<li><a href="addCarrier.html">Add Carrier</a></li>
-			<li><a href="addFlight.html">Add Flight</a></li>
-			<li><a href="editCarrier.html">Edit Carrier</a></li>
-			<li><a href="#">Flight Cancellation - Refund Calculation</a></li>
-			<li><a href="viewCarriers.html">View Carriers</a></li>
-			<li><a href="viewFlights.html">View Flights</a></li>
-			<li><a href="editFlight.html">Edit Flights</a></li>
-		</ul>
-	</nav>
+    <nav>
+        <ul>
+            <li><a href="addCarrier.html">Add Carrier</a></li>
+            <li><a href="addFlight.html">Add Flight</a></li>
+            <li><a href="editCarrier.html">Edit Carrier</a></li>
+            <li><a href="#">Flight Cancellation - Refund Calculation</a></li>
+            <li><a href="viewCarriers.html">View Carriers</a></li>
+            <li><a href="viewFlights.html">View Flights</a></li>
+            <li><a href="editFlight.html">Edit Flights</a></li>
+        </ul>
+    </nav>
 
-	<main>
-	<h2>Admin Actions</h2>
-	<p>Please select an option from the navigation menu to perform an
-		action:</p>
-	<ul>
-		<li><strong>Add Carrier:</strong> Register a new airline carrier
-			to the system.</li>
-		<li><strong>Add Flight:</strong> Add a new flight to the system.</li>
-		<li><strong>Edit Carrier:</strong> Modify the details of an
-			existing carrier.</li>
-		<li><strong>Remove Carrier:</strong> Remove a carrier from the
-			system.</li>
-		<li><strong>Flight Cancellation - Refund Calculation:</strong>
-			Handle flight cancellations and calculate refund amounts.</li>
-		<li><strong>View Carriers:</strong> View the list of all
-			registered airline carriers.</li>
-		<li><strong>View Flights:</strong> View the list of all scheduled
-			flights.</li>
-		<li><strong>Edit Flights:</strong> Modify details of existing
-			flights.</li>
-	</ul>
-	</main>
+    <main>
+        <h2>Admin Actions</h2>
+        <p>Please select an option from the navigation menu to perform an action:</p>
+        <ul class="actions-list">
+            <li><strong>Add Carrier:</strong> Register a new airline carrier to the system.</li>
+            <li><strong>Add Flight:</strong> Add a new flight to the system.</li>
+            <li><strong>Edit Carrier:</strong> Modify the details of an existing carrier.</li>
+            <li><strong>Remove Carrier:</strong> Remove a carrier from the system.</li>
+            <li><strong>Flight Cancellation - Refund Calculation:</strong> Handle flight cancellations and calculate refund amounts.</li>
+            <li><strong>View Carriers:</strong> View the list of all registered airline carriers.</li>
+            <li><strong>View Flights:</strong> View the list of all scheduled flights.</li>
+            <li><strong>Edit Flights:</strong> Modify details of existing flights.</li>
+        </ul>
+    </main>
 
-	<footer>
-		<p>&copy; 2024 Airline Management System</p>
-	</footer>
+    <footer>
+        <p>&copy; 2024 Airline Management System</p>
+    </footer>
 </body>
 
 </html>

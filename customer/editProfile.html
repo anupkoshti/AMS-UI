@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile</title>
+    <title>Edit Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        /* Profile page styling based on the registration page theme */
+        /* Styling based on the profile page theme */
         body {
             font-family: Arial, sans-serif;
             background-color: #fff;
@@ -32,23 +32,27 @@
             margin-bottom: 20px;
         }
 
-        .profile-info {
-            margin-bottom: 20px;
+        .form-group {
+            margin-bottom: 15px;
             text-align: left;
         }
 
-        .profile-info .label {
+        .form-group label {
             font-weight: bold;
             color: #333;
-            display: inline-block;
-            width: 120px;
+            display: block;
         }
 
-        .profile-info .value {
-            color: #555;
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
         }
 
-        .edit-button {
+        .save-button {
             padding: 10px;
             background-color: #007bff;
             color: white;
@@ -60,7 +64,7 @@
             margin-top: 20px;
         }
 
-        .edit-button:hover {
+        .save-button:hover {
             background-color: #0056b3;
         }
 
@@ -94,7 +98,6 @@
         }
 
         .nav-links a {
-            margin-right: 20px;
             color: white;
             text-decoration: none;
             font-size: 16px;
@@ -110,7 +113,7 @@
     </style>
 </head>
 <body>
-    <!-- Navbar similar to the registration page -->
+    <!-- Navbar -->
     <div class="navbar">
         <div class="logo">
             Flight Booking
@@ -122,31 +125,59 @@
         </div>
     </div>
 
-    <!-- Profile container -->
+    <!-- Edit Profile container -->
     <div class="profile-container">
-        <h2>My Profile</h2>
-        <div class="profile-info">
-            <p><span class="label">First Name:</span> <span class="value" id="profile-first-name">John</span></p>
-            <p><span class="label">Last Name:</span> <span class="value" id="profile-last-name">Doe</span></p>
-            <p><span class="label">Email:</span> <span class="value" id="profile-email">john.doe@example.com</span></p>
-            <p><span class="label">Mobile:</span> <span class="value" id="profile-mobile">1234567890</span></p>
-            <p><span class="label">Date of Birth:</span> <span class="value" id="profile-dob">2000-01-01</span></p>
+        <h2>Edit Profile</h2>
+        <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" value="">
         </div>
-        <button class="edit-button" onclick="editProfile()">Edit Profile</button>
+        <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" value="">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" value="">
+        </div>
+        <div class="form-group">
+            <label for="mobile">Mobile</label>
+            <input type="text" id="mobile" name="mobile" maxlength="10" value="">
+        </div>
+        <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" value="">
+        </div>
+        <button class="save-button" onclick="saveProfile()">Save</button>
     </div>
 
     <script>
-        // Load user data from local storage
+        // Pre-fill form fields with values from local storage
         document.addEventListener("DOMContentLoaded", () => {
-            document.getElementById("profile-first-name").textContent = localStorage.getItem("userFirstName") || "John";
-            document.getElementById("profile-last-name").textContent = localStorage.getItem("userLastName") || "Doe";
-            document.getElementById("profile-email").textContent = localStorage.getItem("userEmail") || "john.doe@example.com";
-            document.getElementById("profile-mobile").textContent = localStorage.getItem("userMobile") || "1234567890";
-            document.getElementById("profile-dob").textContent = localStorage.getItem("userDob") || "2000-01-01";
+            document.getElementById("first_name").value = localStorage.getItem("userFirstName") || "";
+            document.getElementById("last_name").value = localStorage.getItem("userLastName") || "";
+            document.getElementById("email").value = localStorage.getItem("userEmail") || "";
+            document.getElementById("mobile").value = localStorage.getItem("userMobile") || "";
+            document.getElementById("dob").value = localStorage.getItem("userDob") || "";
         });
 
-        function editProfile() {
-            window.location.href = "editProfile.html"; // Replace with the actual path to the edit profile page
+        // Save the edited profile details back to local storage
+        function saveProfile() {
+            const firstName = document.getElementById("first_name").value;
+            const lastName = document.getElementById("last_name").value;
+            const email = document.getElementById("email").value;
+            const mobile = document.getElementById("mobile").value;
+            const dob = document.getElementById("dob").value;
+
+            // Update local storage with new values
+            localStorage.setItem("userFirstName", firstName);
+            localStorage.setItem("userLastName", lastName);
+            localStorage.setItem("userEmail", email);
+            localStorage.setItem("userMobile", mobile);
+            localStorage.setItem("userDob", dob);
+
+            // Redirect back to profile page
+            window.location.href = "myProfile.html"; // Update with the actual path to your profile page
         }
     </script>
 </body>

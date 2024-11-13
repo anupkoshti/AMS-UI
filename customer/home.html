@@ -8,7 +8,7 @@
 <title>Home - Easy Go AMS</title>
 <style>
 header {
-	background-color: teal;
+	background-color: dodgerblue;
 	padding: 15px;
 	display: flex;
 	justify-content: space-between;
@@ -64,7 +64,7 @@ header {
 		flex-direction: column;
 		display: none;
 		width: 100%;
-		background-color: teal;
+		background-color: dodgerblue;
 	}
 	.nav-links li {
 		margin: 10px 0;
@@ -167,55 +167,57 @@ form {
 	</header>
 
 	<main>
-	<h2>Welcome to easyGo</h2>
-	<div class="search-container">
+        <h2>Welcome to easyGo</h2>
+        <div class="search-container">
+            <form id="searchForm" onsubmit="searchFlights(event)">
+                <!-- Form content as before -->
+                <label for="from">From:</label> 
+                <input type="text" id="from" name="from" placeholder="Enter Departure City" required>
 
-		<!-- Updated Search Form -->
-		<form id="searchForm">
-			<!-- From: Simple search bar -->
-			<label for="from">From:</label> <input type="text" id="from"
-				name="from" placeholder="Enter Departure City" required>
+                <label for="to">To:</label> 
+                <input type="text" id="to" name="to" placeholder="Enter Destination City" required>
 
-			<!-- To: Simple search bar -->
-			<label for="to">To:</label> <input type="text" id="to" name="to"
-				placeholder="Enter Destination City" required>
+                <label for="departureDate">Departure Date:</label> 
+                <input type="date" id="departureDate" name="departureDate" required>
 
-			<!-- Departure Date -->
-			<label for="departureDate">Departure Date:</label> <input type="date"
-				id="departureDate" name="departureDate" required>
+                <label for="travellers">No. of Travellers:</label> 
+                <input type="number" id="travellers" name="travellers" min="1" max="10" required>
 
-			<!-- Travellers -->
-			<label for="travellers">No. of Travellers:</label> <input
-				type="number" id="travellers" name="travellers" min="1" max="10"
-				required>
+                <label for="class">Class:</label> 
+                <select id="class" name="class" required>
+                    <option value="Economy">Economy</option>
+                    <option value="Business">Business</option>
+                    <option value="Executive">Executive</option>
+                </select>
 
-			<!-- Class: Economy/Business -->
-			<label for="class">Class:</label> <select id="class" name="class"
-				required>
-				<option value="Economy">Economy</option>
-				<option value="Business">Business</option>
-			</select>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </main>
 
-			<!-- Include the userId as a hidden field -->
-			<input type="hidden" name="userId" value="<%=userId%>">
+    <script>
+        function searchFlights(event) {
+            event.preventDefault(); // Prevent form submission
 
-			<button type="submit">Search</button>
-		</form>
-	</div>
-	</main>
+            // Get form values
+            const from = document.getElementById('from').value;
+            const to = document.getElementById('to').value;
+            const departureDate = document.getElementById('departureDate').value;
+            const travellers = document.getElementById('travellers').value;
+            const flightClass = document.getElementById('class').value;
 
-	<script src="home.js"></script>
+            // Store form data in localStorage
+            localStorage.setItem('flightSearchData', JSON.stringify({
+                from,
+                to,
+                departureDate,
+                travellers,
+                flightClass
+            }));
 
-	<script>
-		function reload() {
-			location.reload();
-		}
-
-		function logoutfun() {
-			localStorage.clear();
-			sessionStorage.clear();
-			window.location.href = "LogoutServlet";
-		}
-	</script>
+            // Redirect to viewFlights.html
+            window.location.href = 'viewFlights.html';
+        }
+    </script>
 </body>
 </html>

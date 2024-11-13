@@ -299,9 +299,9 @@
         dobInput.max = eighteenYearsAgo.toISOString().split("T")[0];
     });
 
-document.getElementById("mobile_number").addEventListener("input", function (e) {
-    e.target.value = e.target.value.replace(/[^0-9]/g, "").slice(0, 10);
-});
+    document.getElementById("mobile_number").addEventListener("input", function (e) {
+        e.target.value = e.target.value.replace(/[^0-9]/g, "").slice(0, 10);
+    });
 
 
 
@@ -381,12 +381,21 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
 // Show modal when registration is successful
 function registerUser() {
 
+    // Get values from input fields
+    const firstName = document.querySelector("input[name='first_name']").value;
+    const lastName = document.querySelector("input[name='last_name']").value;
     const email = document.querySelector("input[name='email']").value;
     const password = document.getElementById("password").value;
+    const mobileNumber = document.querySelector("input[name='mobile_number']").value;
+    const dob = document.querySelector("input[name='dob']").value;
 
-    // Store email and password in local storage
+    // Store values in local storage
+    localStorage.setItem("userFirstName", firstName);
+    localStorage.setItem("userLastName", lastName);
     localStorage.setItem("userEmail", email);
     localStorage.setItem("userPassword", password);
+    localStorage.setItem("userMobile", mobileNumber);
+    localStorage.setItem("userDob", dob);
 
     const successModal = document.getElementById("successModal");
     successModal.style.display = "block";  // Show the modal

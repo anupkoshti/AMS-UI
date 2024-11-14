@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,10 +15,18 @@
         }
 
         header {
-            background-color: teal;
+            background-color: #2C3E50;
             color: white;
             padding: 20px;
+            position: relative;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+            font-weight: 600;
         }
 
         main {
@@ -47,22 +54,22 @@
         
         
         .input-group input {
-    width: 70%; /* Adjust width as needed */
-    padding: 10px;
-    border: 1px solid #007BFF;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
-    font-size: 1rem;
-}
+            width: 70%; /* Adjust width as needed */
+            padding: 10px;
+            border: 1px solid #007BFF;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+            font-size: 1rem;
+        }
 
-.input-group input:focus {
-    outline: none;
-    border-color: #0056b3;
-    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
-    background-color: #e6f2ff;
-}
+        .input-group input:focus {
+            outline: none;
+            border-color: #0056b3;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+            background-color: #e6f2ff;
+        }
         
         
 
@@ -79,6 +86,9 @@
         }
 
         button {
+            margin-top: 28px;
+            height: 39px;
+            margin-right: 194px;
             background-color: dodgerblue;
             color: white;
             border: none;
@@ -106,16 +116,43 @@
         footer p {
             margin: 0;
         }
+
+        .signout-button {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            color: white;
+            text-decoration: none;
+            background-color: #ff4d4d;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .signout-button:hover {
+            background-color: #cc0000;
+        }
+
     </style>
 </head>
 
 <body>
     <header>
         <h1>Add a New Airline Carrier</h1>
+        <a href="adminLogin.html" class="signout-button">Sign Out</a>
     </header>
 
     <main>
         <form>
+
+            <div class="input-group">
+                <label for="carrierId">Carrier ID:</label>
+                <input type="number" id="carrierId" name="carrierId" readonly>
+            </div>
+            
+
             <!-- Carrier Name -->
             <div class="input-group">
                 <label for="carrierName">Carrier Name:</label>
@@ -190,6 +227,67 @@
     <footer>
         <p>&copy; 2024 Airline Management System</p>
     </footer>
-</body>
 
+    
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+        // Check the last Carrier ID in local storage or start from 1
+        let lastCarrierId = localStorage.getItem("lastCarrierId");
+        let newCarrierId = lastCarrierId ? parseInt(lastCarrierId) + 1 : 1;
+        
+        // Set the Carrier ID input field with the new ID
+        document.getElementById("carrierId").value = newCarrierId;
+    });
+
+    document.querySelector("form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevents form submission
+
+        // Retrieve the existing carrierData object from local storage or initialize a new object
+        let carrierData = JSON.parse(localStorage.getItem("carrierData")) || {};
+
+        // Create a new carrier entry with all input fields
+        const newCarrier = {
+            carrierId: document.getElementById("carrierId").value,
+            carrierName: document.getElementById("carrierName").value,
+            discount30: document.getElementById("discount30").value,
+            discount60: document.getElementById("discount60").value,
+            discount90: document.getElementById("discount90").value,
+            bulkDiscount: document.getElementById("bulkDiscount").value,
+            refund2Days: document.getElementById("refund2Days").value,
+            refund10Days: document.getElementById("refund10Days").value,
+            refund20Days: document.getElementById("refund20Days").value,
+            silverDiscount: document.getElementById("silverDiscount").value,
+            goldDiscount: document.getElementById("goldDiscount").value,
+            platinumDiscount: document.getElementById("platinumDiscount").value
+        };
+
+        // Add the new carrier to the carrierData object
+        carrierData[newCarrier.carrierId] = newCarrier;
+
+        // Save the updated carrierData object back to local storage
+        localStorage.setItem("carrierData", JSON.stringify(carrierData));
+
+        // Update the last used Carrier ID in local storage
+        localStorage.setItem("lastCarrierId", newCarrier.carrierId);
+
+        // Provide feedback to the user
+        alert("Carrier data has been saved successfully.");
+
+        // Refresh the Carrier ID and clear input fields for the next entry
+        document.getElementById("carrierId").value = parseInt(newCarrier.carrierId) + 1;
+        document.getElementById("carrierName").value = "";
+        document.getElementById("discount30").value = "";
+        document.getElementById("discount60").value = "";
+        document.getElementById("discount90").value = "";
+        document.getElementById("bulkDiscount").value = "";
+        document.getElementById("refund2Days").value = "";
+        document.getElementById("refund10Days").value = "";
+        document.getElementById("refund20Days").value = "";
+        document.getElementById("silverDiscount").value = "";
+        document.getElementById("goldDiscount").value = "";
+        document.getElementById("platinumDiscount").value = "";
+    });
+
+</script>
+</body>
 </html>

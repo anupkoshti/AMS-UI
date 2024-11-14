@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,17 +44,14 @@ form {
 	margin-bottom: 20px;
 }
 
-.input-group {
-	margin-bottom: 20px;
-}
-
 .input-group label {
 	display: block;
 	font-weight: bold;
 	margin-bottom: 8px;
 }
-        .input-group input {
-    width: 70%; /* Adjust width as needed */
+
+.input-group input {
+    width: 70%;
     padding: 10px;
     border: 1px solid #007BFF;
     border-radius: 8px;
@@ -64,13 +60,6 @@ form {
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
     font-size: 1rem;
 }
-/* .input-group input {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	font-size: 14px;
-} */
 
 button {
 	background-color: dodgerblue;
@@ -87,11 +76,6 @@ button:hover {
 	background-color: cobalt;
 }
 
-p.error-message {
-	color: red;
-	margin-top: 10px;
-}
-
 footer {
 	background-color: #004080;
 	color: white;
@@ -101,10 +85,6 @@ footer {
 	bottom: 0;
 	width: 100%;
 }
-
-footer p {
-	margin: 0;
-}
 </style>
 </head>
 <body>
@@ -113,92 +93,97 @@ footer p {
 	</header>
 
 	<div id="main">
-		<!-- Step 1: Search Flight by Flight ID -->
-		<form>
-			<div class="input-group">
-				<label for="flightId">Enter Flight ID to Edit:</label> <input
-					type="number" id="flightId" name="flightId" placeholder="Flight ID"
-					required>
-			</div>
-			<button type="submit">Search Flight</button>
-		</form>
-
-		<!-- Step 2: Show flight edit form after search -->
-		<!-- <%
-			// Check if the flight object is available in the request scope
-			Flight flight = (Flight) request.getAttribute("flight");
-			if (flight != null) {
-		%> -->
-		<form style="margin-top: 20px;">
-			<!-- Hidden Flight ID -->
-			<input type="hidden" name="flightId"
-				value="">
+		<form id="editFlightForm">
+			<input type="hidden" id="flightId" name="flightId">
 
 			<div class="input-group">
-				<label for="carrierName">Carrier Name:</label> <input type="text"
-					id="carrierName" name="carrierName"
-					value="" required>
+				<label for="carrierName">Carrier Name:</label> 
+				<input type="text" id="carrierName" name="carrierName" required>
 			</div>
 
 			<div class="input-group">
-				<label for="origin">Origin:</label> <input type="text" id="origin"
-					name="origin" value="" required>
+				<label for="origin">Origin:</label> 
+				<input type="text" id="origin" name="origin" required>
 			</div>
 
 			<div class="input-group">
-				<label for="destination">Destination:</label> <input type="text"
-					id="destination" name="destination"
-					value="" required>
+				<label for="destination">Destination:</label> 
+				<input type="text" id="destination" name="destination" required>
 			</div>
 
 			<div class="input-group">
-				<label for="airfare">Airfare:</label> <input type="number"
-					id="airfare" name="airfare" value=""
-					required>
+				<label for="airfare">Airfare:</label> 
+				<input type="number" id="airfare" name="airfare" required>
 			</div>
 
 			<div class="input-group">
-				<label for="economySeats">Economy Seats:</label> <input
-					type="number" id="economySeats" name="economySeats"
-					value="" required>
+				<label for="economySeats">Economy Seats:</label> 
+				<input type="number" id="economySeats" name="economySeats" required>
 			</div>
 
 			<div class="input-group">
-				<label for="businessSeats">Business Seats:</label> <input
-					type="number" id="businessSeats" name="businessSeats"
-					value="" required>
+				<label for="businessSeats">Business Seats:</label> 
+				<input type="number" id="businessSeats" name="businessSeats" required>
 			</div>
 
 			<div class="input-group">
-				<label for="executiveSeats">Executive Seats:</label> <input
-					type="number" id="executiveSeats" name="executiveSeats"
-					value="" required>
+				<label for="executiveSeats">Executive Seats:</label> 
+				<input type="number" id="executiveSeats" name="executiveSeats" required>
 			</div>
 
 			<div class="input-group">
-				<label for="travelDate">Travel Date:</label> <input type="date"
-					id="travelDate" name="travelDate"
-					value="" required>
+				<label for="travelDate">Travel Date:</label> 
+				<input type="date" id="travelDate" name="travelDate" required>
 			</div>
 
 			<button type="submit">Update Flight</button>
 		</form>
-		<!-- <%
-			}
-		%> -->
-		<!-- Error message handling -->
-		<div>
-			<!-- <%
-				String errorMessage = (String) request.getAttribute("errorMessage");
-				if (errorMessage != null) {
-					out.println("<p style='color: red;'>" + errorMessage + "</p>");
-				}
-			%> -->
-		</div>
 	</div>
 
 	<footer>
 		<p>&copy; 2024 Airline Management System</p>
 	</footer>
+
+	<script>
+		// Populate form fields with data from localStorage
+		window.onload = function() {
+			const flightData = JSON.parse(localStorage.getItem('editFlightData'));
+
+			if (flightData) {
+				document.getElementById('flightId').value = flightData.flightId;
+				document.getElementById('carrierName').value = flightData.carrierName;
+				document.getElementById('origin').value = flightData.origin;
+				document.getElementById('destination').value = flightData.destination;
+				document.getElementById('airfare').value = flightData.airfare.replace('$', '');
+				document.getElementById('economySeats').value = flightData.economySeats;
+				document.getElementById('businessSeats').value = flightData.businessSeats;
+				document.getElementById('executiveSeats').value = flightData.executiveSeats;
+				document.getElementById('travelDate').value = flightData.travelDate;
+			}
+		};
+
+		// Update flight data in localStorage and show success message
+		document.getElementById('editFlightForm').onsubmit = function(event) {
+			event.preventDefault();
+
+			const updatedFlightData = {
+				flightId: document.getElementById('flightId').value,
+				carrierName: document.getElementById('carrierName').value,
+				origin: document.getElementById('origin').value,
+				destination: document.getElementById('destination').value,
+				airfare: `$${document.getElementById('airfare').value}`, // Add dollar sign back
+				economySeats: document.getElementById('economySeats').value,
+				businessSeats: document.getElementById('businessSeats').value,
+				executiveSeats: document.getElementById('executiveSeats').value,
+				travelDate: document.getElementById('travelDate').value
+			};
+
+			// Save the updated data back to localStorage
+			localStorage.setItem('editFlightData', JSON.stringify(updatedFlightData));
+
+			// Show success message
+			alert('Flight details updated successfully.');
+		};
+	</script>
 </body>
 </html>

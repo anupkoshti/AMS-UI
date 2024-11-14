@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,42 +7,43 @@
 <title>Edit Carrier</title>
 <style>
 body {
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	margin: 0;
-	padding: 0;
-	background-color: #f4f4f4;
-}
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
 
-header {
-	background-color: teal;
-	color: white;
-	padding: 20px;
-	text-align: center;
-}
+        header {
+            background-color: teal;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
 
-main {
-	padding: 40px;
-	max-width: 800px;
-	margin: 20px auto;
-	background-color: white;
-	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+        main {
+            padding: 40px;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-main h1 {
-	margin-bottom: 30px;
-	color: darkslategray;
-}
+        main h1 {
+            margin-bottom: 30px;
+            color: darkslategray;
+        }
 
-.input-group {
-	margin-bottom: 20px;
-}
-
-.input-group label {
-	display: block;
-	font-weight: bold;
-	margin-bottom: 8px;
-}
+        .input-group {
+            margin-bottom: 20px;
+        }
+        form{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        
         .input-group input {
     width: 70%; /* Adjust width as needed */
     padding: 10px;
@@ -52,69 +54,215 @@ main h1 {
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
     font-size: 1rem;
 }
-/* .input-group input {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	font-size: 14px;
-} */
 
-button {
-	background-color: dodgerblue;
-	color: white;
-	border: none;
-	padding: 10px 20px;
-	font-size: 16px;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
+.input-group input:focus {
+    outline: none;
+    border-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+    background-color: #e6f2ff;
 }
+        
+        
 
-button:hover {
-	background-color: cobalt;
-}
+        .input-group {
+            width: 48%;
+            margin-bottom: 20px;
+        }
 
-p.error-message {
-	color: red;
-	margin-top: 10px;
-}
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            
+        }
 
-footer {
-	background-color: #004080;
-	color: white;
-	padding: 10px;
-	text-align: center;
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-}
+        button {
+            margin-top: 28px;
+            height: 39px;
+            margin-right: 194px;
+            background-color: dodgerblue;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-footer p {
-	margin: 0;
-}
+        button:hover {
+            background-color: cobalt;
+        }
+
+        footer {
+            background-color: #004080;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+        }
 </style>
 </head>
 <body>
 	<header>
 		<h1>Edit Carrier Details</h1>
 	</header>
+	<main>
+		<form id="editForm">
+			<!-- Carrier ID (non-editable, displayed only for reference) -->
+                <div class="input-group">
+                    <label for="carrierId">Carrier ID:</label>
+                    <input type="number" id="carrierId" name="carrierId" class="carrier-id" placeholder="Enter Carrier Id" required>
+                </div>
 
-	<main> <!-- Step 1: Carrier Search by ID -->
-	<form>
-		<div class="input-group">
-			<label for="carrierId">Enter Carrier ID to Search:</label> <input
-				type="number" id="carrierId" name="carrierId"
-				placeholder="Carrier ID" required>
-		</div>
-		<button type="submit">Search</button>
-	</form>
+                <!-- Carrier Name -->
+                <div class="input-group">
+                    <label for="carrierName">Carrier Name:</label>
+                    <input type="text" id="carrierName" name="carrierName" class="carrier-name" placeholder="Enter Carrier Name" maxlength="50" required>
+                </div>
 
-	<!-- Show error message if no carrier is found -->
+                <!-- Discount for 30 Days Advance Booking -->
+                <div class="input-group">
+                    <label for="discount30">Discount for 30 Days Advance Booking (%):</label>
+                    <input type="number" id="discount30" name="discount30" class="discount-30" placeholder="Enter Discount %" min="0" max="100">
+                </div>
+
+                <!-- Discount for 60 Days Advance Booking -->
+                <div class="input-group">
+                    <label for="discount60">Discount for 60 Days Advance Booking (%):</label>
+                    <input type="number" id="discount60" name="discount60" class="discount-60" placeholder="Enter Discount %" min="0" max="100">
+                </div>
+
+                <!-- Discount for 90 Days Advance Booking -->
+                <div class="input-group">
+                    <label for="discount90">Discount for 90 Days Advance Booking (%):</label>
+                    <input type="number" id="discount90" name="discount90" class="discount-90" placeholder="Enter Discount %" min="0" max="100">
+                </div>
+
+                <!-- Bulk Booking Discount -->
+                <div class="input-group">
+                    <label for="bulkDiscount">Bulk Booking Discount (%):</label>
+                    <input type="number" id="bulkDiscount" name="bulkDiscount" class="bulk-discount" placeholder="Enter Bulk Booking Discount %" min="0" max="100">
+                </div>
+
+                <!-- Refund for Ticket Cancellation 2 Days Before Travel -->
+                <div class="input-group">
+                    <label for="refund2Days">Refund for Ticket Cancellation 2 Days Before Travel (%):</label>
+                    <input type="number" id="refund2Days" name="refund2Days" class="refund-2days" placeholder="Enter Refund %" min="0" max="100">
+                </div>
+
+                <!-- Refund for Ticket Cancellation 10 Days Before Travel -->
+                <div class="input-group">
+                    <label for="refund10Days">Refund for Ticket Cancellation 10 Days Before Travel (%):</label>
+                    <input type="number" id="refund10Days" name="refund10Days" class="refund-10days" placeholder="Enter Refund %" min="0" max="100">
+                </div>
+
+                <!-- Refund for Ticket Cancellation 20 Days Before Travel -->
+                <div class="input-group">
+                    <label for="refund20Days">Refund for Ticket Cancellation 20 Days Before Travel (%):</label>
+                    <input type="number" id="refund20Days" name="refund20Days" class="refund-20days" placeholder="Enter Refund %" min="0" max="100">
+                </div>
+
+                <!-- Silver User Discount -->
+                <div class="input-group">
+                    <label for="silverDiscount">Silver User Discount (%):</label>
+                    <input type="number" id="silverDiscount" name="silverDiscount" class="silver-discount" placeholder="Enter Silver User Discount %" min="0" max="100">
+                </div>
+
+                <!-- Gold User Discount -->
+                <div class="input-group">
+                    <label for="goldDiscount">Gold User Discount (%):</label>
+                    <input type="number" id="goldDiscount" name="goldDiscount" class="gold-discount" placeholder="Enter Gold User Discount %" min="0" max="100">
+                </div>
+
+                <!-- Platinum User Discount -->
+                <div class="input-group">
+                    <label for="platinumDiscount">Platinum User Discount (%):</label>
+                    <input type="number" id="platinumDiscount" name="platinumDiscount" class="platinum-discount" placeholder="Enter Platinum User Discount %" min="0" max="100">
+                </div>
+            <button type="button" id="checkCarrier">Check Carrier</button>
+			<button type="submit">Save Changes</button>
+		</form>
 	</main>
 
 	<footer>
 		<p>© 2024 Airline Management System</p>
 	</footer>
+
+	<script>
+		document.getElementById("checkCarrier").addEventListener("click", function() {
+    const carrierId = document.getElementById("carrierId").value;
+
+    // Get all carrier data from local storage
+    const allCarrierData = JSON.parse(localStorage.getItem("carrierData")) || {};
+
+    // Check if the carrier ID exists in allCarrierData
+    const carrierData = allCarrierData[carrierId];
+    if (carrierData) {
+        // Populate the form with the carrier data if found
+        document.getElementById("carrierName").value = carrierData.carrierName || "";
+        document.getElementById("discount30").value = carrierData.discount30 || "";
+        document.getElementById("discount60").value = carrierData.discount60 || "";
+        document.getElementById("discount90").value = carrierData.discount90 || "";
+        document.getElementById("bulkDiscount").value = carrierData.bulkDiscount || "";
+        document.getElementById("refund2Days").value = carrierData.refund2Days || "";
+        document.getElementById("refund10Days").value = carrierData.refund10Days || "";
+        document.getElementById("refund20Days").value = carrierData.refund20Days || "";
+        document.getElementById("silverDiscount").value = carrierData.silverDiscount || "";
+        document.getElementById("goldDiscount").value = carrierData.goldDiscount || "";
+        document.getElementById("platinumDiscount").value = carrierData.platinumDiscount || "";
+    } else {
+        alert("Carrier data not found.");
+    }
+});
+
+// Save or update carrier data on form submission
+document.getElementById("editForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    const carrierId = document.getElementById("carrierId").value;
+    const updatedCarrierData = {
+        carrierName: document.getElementById("carrierName").value,
+        discount30: document.getElementById("discount30").value,
+        discount60: document.getElementById("discount60").value,
+        discount90: document.getElementById("discount90").value,
+        bulkDiscount: document.getElementById("bulkDiscount").value,
+        refund2Days: document.getElementById("refund2Days").value,
+        refund10Days: document.getElementById("refund10Days").value,
+        refund20Days: document.getElementById("refund20Days").value,
+        silverDiscount: document.getElementById("silverDiscount").value,
+        goldDiscount: document.getElementById("goldDiscount").value,
+        platinumDiscount: document.getElementById("platinumDiscount").value
+    };
+
+    // Fetch all carrier data, update the specific carrier, then save back to local storage
+    const allCarrierData = JSON.parse(localStorage.getItem("carrierData")) || {};
+    allCarrierData[carrierId] = updatedCarrierData;
+    localStorage.setItem("carrierData", JSON.stringify(allCarrierData));
+
+    alert("Carrier data has been updated successfully.");
+
+    document.getElementById("carrierName").value = "";
+    document.getElementById("discount30").value ="";
+    document.getElementById("discount60").value =  "";
+    document.getElementById("discount90").value = "";
+    document.getElementById("bulkDiscount").value =  "";
+    document.getElementById("refund2Days").value = "";
+    document.getElementById("refund10Days").value =  "";
+    document.getElementById("refund20Days").value = "";
+    document.getElementById("silverDiscount").value = "";
+    document.getElementById("goldDiscount").value = "";
+    document.getElementById("platinumDiscount").value =  "";
+
+});
+
+	</script>
+    
 </body>
 </html>

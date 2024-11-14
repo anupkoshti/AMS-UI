@@ -1,183 +1,217 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Add Flight</title>
-<style>
-body {
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	margin: 0;
-	padding: 0;
-	background-color: #f4f4f4;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Flight</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
 
-header {
-	background-color: teal;
-	color: white;
-	padding: 20px;
-	text-align: center;
-}
+        header {
+            background-color: #2C3E50;
+            color: white;
+            padding: 20px;
+            position: relative;
+            text-align: center;
+        }
 
-main {
-	padding: 40px;
-	max-width: 800px;
-	margin: 20px auto;
-	background-color: white;
-	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+        header h1 {
+            margin: 0;
+        }
 
-main h1 {
-	margin-bottom: 30px;
-	color: darkslategray;
-}
+        /* Sign Out Button */
+        .signout-button {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            color: white;
+            text-decoration: none;
+            background-color: #ff4d4d;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .signout-button:hover {
+            background-color: #cc0000;
+        }
+
+        main {
+            padding: 40px;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        main h1 {
+            margin-bottom: 30px;
+            color: darkslategray;
+        }
 
         .input-group input {
-    width: 70%; /* Adjust width as needed */
-    padding: 10px;
-    border: 1px solid #007BFF;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
-    font-size: 1rem;
-}
-.input-group input:focus {
-    outline: none;
-    border-color: #0056b3;
-    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
-    background-color: #e6f2ff;
-}
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #007BFF;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+            font-size: 1rem;
+        }
 
+        .input-group input:focus {
+            outline: none;
+            border-color: #0056b3;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+            background-color: #e6f2ff;
+        }
 
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
 
-.input-group label {
-	display: block;
-	font-weight: bold;
-	margin-bottom: 8px;
-}
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
 
-form {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-}
+        .input-group {
+            width: 48%;
+            margin-bottom: 20px;
+        }
 
-.input-group {
-	width: 48%;
-	margin-bottom: 20px;
-}
+        button {
+            background-color: dodgerblue;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-/* .input-group input {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	font-size: 14px;
-} */
+        button:hover {
+            background-color: cobalt;
+        }
 
-button {
-	background-color: dodgerblue;
-	color: white;
-	border: none;
-	padding: 10px 20px;
-	font-size: 16px;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
-}
+        footer {
+            background-color: #004080;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
 
-button:hover {
-	background-color: cobalt;
-}
-
-footer {
-	background-color: #004080;
-	color: white;
-	padding: 10px;
-	text-align: center;
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-}
-
-footer p {
-	margin: 0;
-}
-</style>
+        footer p {
+            margin: 0;
+        }
+    </style>
 </head>
 
 <body>
-	<header>
-		<h1>Add a New Flight</h1>
-	</header>
+    <header>
+        <h1>Add a New Flight</h1>
+        <a href="adminLogin.html" class="signout-button">Sign Out</a>
+    </header>
 
-	<main>
-	<form>
-		<!-- Carrier ID -->
-		<div class="input-group">
-			<label for="carrierId">Carrier ID:</label> <input type="number"
-				id="carrierId" name="carrierId" placeholder="Enter Carrier ID"
-				required>
-		</div>
+    <main>
+        <form>
+            <!-- Carrier ID -->
+            <div class="input-group">
+                <label for="carrierId">Carrier ID:</label>
+                <input type="number" id="carrierId" name="carrierId" placeholder="Enter Carrier ID" required>
+            </div>
 
-		<!-- Origin -->
-		<div class="input-group">
-			<label for="origin">Origin:</label> <input type="text" id="origin"
-				name="origin" placeholder="Enter Origin" maxlength="50" required>
-		</div>
+            <!-- Origin -->
+            <div class="input-group">
+                <label for="origin">Origin:</label>
+                <input type="text" id="origin" name="origin" placeholder="Enter Origin" maxlength="50" required>
+            </div>
 
-		<!-- Destination -->
-		<div class="input-group">
-			<label for="destination">Destination:</label> <input type="text"
-				id="destination" name="destination" placeholder="Enter Destination"
-				maxlength="50" required>
-		</div>
+            <!-- Destination -->
+            <div class="input-group">
+                <label for="destination">Destination:</label>
+                <input type="text" id="destination" name="destination" placeholder="Enter Destination" maxlength="50" required>
+            </div>
 
-		<!-- Airfare -->
-		<div class="input-group">
-			<label for="airfare">Airfare (in $):</label> <input type="number"
-				id="airfare" name="airfare" placeholder="Enter Airfare" required>
-		</div>
+            <!-- Airfare -->
+            <div class="input-group">
+                <label for="airfare">Airfare (in $):</label>
+                <input type="number" id="airfare" name="airfare" placeholder="Enter Airfare" required>
+            </div>
 
-		<!-- Economy Class Seat Capacity -->
-		<div class="input-group">
-			<label for="economySeats">Economy Class Seat Capacity:</label> <input
-				type="number" id="economySeats" name="economySeats"
-				placeholder="Enter Economy Seat Capacity" min="20" required>
-		</div>
+            <!-- Economy Class Seat Capacity -->
+            <div class="input-group">
+                <label for="economySeats">Economy Class Seat Capacity:</label>
+                <input type="number" id="economySeats" name="economySeats" placeholder="Enter Economy Seat Capacity" min="20" required>
+            </div>
 
-		<!-- Business Class Seat Capacity -->
-		<div class="input-group">
-			<label for="businessSeats">Business Class Seat Capacity:</label> <input
-				type="number" id="businessSeats" name="businessSeats"
-				placeholder="Enter Business Seat Capacity" min="10" required>
-		</div>
+            <!-- Business Class Seat Capacity -->
+            <div class="input-group">
+                <label for="businessSeats">Business Class Seat Capacity:</label>
+                <input type="number" id="businessSeats" name="businessSeats" placeholder="Enter Business Seat Capacity" min="10" required>
+            </div>
 
-		<!-- Executive Class Seat Capacity -->
-		<div class="input-group">
-			<label for="executiveSeats">Executive Class Seat Capacity:</label> <input
-				type="number" id="executiveSeats" name="executiveSeats"
-				placeholder="Enter Executive Seat Capacity" min="10" required>
-		</div>
+            <!-- Executive Class Seat Capacity -->
+            <div class="input-group">
+                <label for="executiveSeats">Executive Class Seat Capacity:</label>
+                <input type="number" id="executiveSeats" name="executiveSeats" placeholder="Enter Executive Seat Capacity" min="10" required>
+            </div>
 
-		<!-- Travel Date -->
-		<div class="input-group">
-			<label for="travelDate">Travel Date:</label> <input type="date"
-				id="travelDate" name="travelDate" required>
-		</div>
+            <!-- Travel Date -->
+            <div class="input-group">
+                <label for="travelDate">Travel Date:</label>
+                <input type="date" id="travelDate" name="travelDate" required>
+            </div>
 
-		<!-- Submit Button -->
-		<button type="submit">Add Flight</button>
-	</form>
-	</main>
+            <!-- Submit Button -->
+            <button type="submit">Add Flight</button>
+        </form>
+    </main>
 
-	<footer>
-		<p>&copy; 2024 Airline Management System</p>
-	</footer>
+    <footer>
+        <p>&copy; 2024 Airline Management System</p>
+    </footer>
+
+    <script>
+        document.querySelector("form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevents the form from actually submitting
+
+            // Create an object to store the flight details
+            const flightData = {
+                carrierId: document.getElementById("carrierId").value,
+                origin: document.getElementById("origin").value,
+                destination: document.getElementById("destination").value,
+                airfare: document.getElementById("airfare").value,
+                economySeats: document.getElementById("economySeats").value,
+                businessSeats: document.getElementById("businessSeats").value,
+                executiveSeats: document.getElementById("executiveSeats").value,
+                travelDate: document.getElementById("travelDate").value
+            };
+
+            // Save the object to local storage
+            localStorage.setItem("flightData", JSON.stringify(flightData));
+
+            // Optional: Provide feedback to the user
+            alert("Flight details have been saved successfully.");
+        });
+    </script>
 </body>
 
 </html>

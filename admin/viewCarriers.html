@@ -1,147 +1,179 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>View Carriers</title>
- <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
 
-        header {
-            background-color: teal;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+    header {
+        background-color: teal;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
 
-        main {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-        }
+    main {
+        flex: 1;
+        padding: 20px;
+        overflow-y: auto;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: white;
-        }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: white;
+    }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
 
-        th {
-            background-color: #007BFF;
-            color: white;
-        }
+    th {
+        background-color: #007BFF;
+        color: white;
+    }
 
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 
-        tr:hover {
-            background-color: #ddd;
-        }
+    tr:hover {
+        background-color: #ddd;
+    }
 
-        button {
-            background-color: dodgerblue;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+    button {
+        background-color: dodgerblue;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
-        button:hover {
-            background-color: cobalt;
-        }
+    button:hover {
+        background-color: cobalt;
+    }
 
-        .error-message {
-            color: red;
-            margin-top: 20px;
-        }
+    .error-message {
+        color: red;
+        margin-top: 20px;
+    }
 
-        footer {
-            background-color: #004080;
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
+    footer {
+        background-color: #004080;
+        color: white;
+        padding: 10px;
+        text-align: center;
+    }
 
-        footer p {
-            margin: 0;
-        }
-    </style>
+    footer p {
+        margin: 0;
+    }
+</style>
 </head>
 <body>
-	<header>
-		<h1>All Carriers</h1>
-	</header>
+    <header>
+        <h1>All Carriers</h1>
+    </header>
 
-	<main> <!-- Step 1: Button to trigger request to see all carriers -->
-	<form>
-		<button type="submit">See All Carriers</button>
-	</form>
+    <main>
+        <!-- Step 1: Button to trigger request to see all carriers -->
+        <button id="seeAllCarriersButton">See All Carriers</button>
 
-	<!-- Step 2: Carrier Table will be displayed after the button is clicked -->
-	<table border="1" cellpadding="10" cellspacing="0"
-		style="margin-top: 20px;">
-		<thead>
-			<tr>
-				<th>Carrier ID</th>
-				<th>Carrier Name</th>
-				<th>30 Days Advance Discount</th>
-				<th>60 Days Advance Discount</th>
-				<th>90 Days Advance Discount</th>
-				<th>Bulk Booking Discount</th>
-				<th>Refund 2 Days Before</th>
-				<th>Refund 10 Days Before</th>
-				<th>Refund 20 Days Before</th>
-				<th>Silver Discount</th>
-				<th>Gold Discount</th>
-				<th>Platinum Discount</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-		
-			<tr>
-				<td colspan="12">No carriers found.</td>
-			</tr>
-		
-		</tbody>
-	</table>
-	</main>
+        <!-- Step 2: Carrier Table will be displayed after the button is clicked -->
+        <table id="carrierTable" border="1" cellpadding="10" cellspacing="0" style="margin-top: 20px; display: none;">
+            <thead>
+                <tr>
+                    <th>Carrier ID</th>
+                    <th>Carrier Name</th>
+                    <th>30 Days Advance Discount</th>
+                    <th>60 Days Advance Discount</th>
+                    <th>90 Days Advance Discount</th>
+                    <th>Bulk Booking Discount</th>
+                    <th>Refund 2 Days Before</th>
+                    <th>Refund 10 Days Before</th>
+                    <th>Refund 20 Days Before</th>
+                    <th>Silver Discount</th>
+                    <th>Gold Discount</th>
+                    <th>Platinum Discount</th>
+                </tr>
+            </thead>
+            <tbody id="carrierTableBody">
+                <!-- Carrier rows will be dynamically populated here -->
+            </tbody>
+        </table>
+        
+        <p id="noCarriersMessage" style="color: red; display: none;">No carriers found.</p>
+    </main>
 
-	<footer>
-		<p>© 2024 Airline Management System</p>
-	</footer>
+    <footer>
+        <p>© 2024 Airline Management System</p>
+    </footer>
+
+    <script>
+        // Function to display all carriers
+        function displayAllCarriers() {
+            const carrierTableBody = document.getElementById("carrierTableBody");
+            carrierTableBody.innerHTML = ""; // Clear existing rows
+
+            // Retrieve all carriers from local storage as a single object
+            const carrierData = JSON.parse(localStorage.getItem("carrierData")) || {};
+
+            // Check if there are any carriers
+            const carrierIds = Object.keys(carrierData);
+            if (carrierIds.length === 0) {
+                document.getElementById("carrierTable").style.display = "none";
+                document.getElementById("noCarriersMessage").style.display = "block";
+                return;
+            }
+
+            // Loop through each carrier ID and create table rows
+            carrierIds.forEach(carrierId => {
+                const carrier = carrierData[carrierId];
+
+                // Create a new row for the carrier
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${carrier.carrierId || ""}</td>
+                    <td>${carrier.carrierName || ""}</td>
+                    <td>${carrier.discount30 || "0"}%</td>
+                    <td>${carrier.discount60 || "0"}%</td>
+                    <td>${carrier.discount90 || "0"}%</td>
+                    <td>${carrier.bulkDiscount || "0"}%</td>
+                    <td>${carrier.refund2Days || "0"}%</td>
+                    <td>${carrier.refund10Days || "0"}%</td>
+                    <td>${carrier.refund20Days || "0"}%</td>
+                    <td>${carrier.silverDiscount || "0"}%</td>
+                    <td>${carrier.goldDiscount || "0"}%</td>
+                    <td>${carrier.platinumDiscount || "0"}%</td>
+                `;
+                carrierTableBody.appendChild(row);
+            });
+
+            // Show the table and hide the no-carriers message
+            document.getElementById("carrierTable").style.display = "table";
+            document.getElementById("noCarriersMessage").style.display = "none";
+        }
+
+        // Add event listener for the button
+        document.getElementById("seeAllCarriersButton").addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent form submission
+            displayAllCarriers();
+        });
+    </script>
 </body>
 </html>

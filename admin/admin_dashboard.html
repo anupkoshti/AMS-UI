@@ -1,7 +1,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +20,7 @@
             padding: 20px 0;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         header h1 {
@@ -33,6 +33,25 @@
             margin-top: 5px;
             font-size: 18px;
             color: #A1C6EA;
+        }
+
+        /* Sign Out Button */
+        .signout-button {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            text-decoration: none;
+            background-color: #ff4d4d;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .signout-button:hover {
+            background-color: #cc0000;
         }
 
         /* Navigation Styles */
@@ -134,11 +153,11 @@
 
     </style>
 </head>
-
 <body>
     <header>
         <h1>Welcome to Airline Management System (Admin)</h1>
         <p>Admin Dashboard</p>
+        <a href="adminLogin.html" class="signout-button">Sign Out</a>
     </header>
 
     <nav>
@@ -172,5 +191,4 @@
         <p>&copy; 2024 Airline Management System</p>
     </footer>
 </body>
-
 </html>

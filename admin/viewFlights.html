@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,197 +5,274 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>View Flights</title>
 <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
 
-        header {
-            background-color: teal;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+    header {
+        background-color: teal;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
 
-        main {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-        }
+    main {
+        flex: 1;
+        padding: 20px;
+        overflow-y: auto;
+    }
 
-        .input-group {
-            margin-bottom: 15px;
-        }
+    .input-group {
+        margin-bottom: 15px;
+    }
 
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        
-        .input-group input {
-        
-    width: 30%; /* Adjust width as needed */
-    padding: 10px;
-    border: 1px solid #007BFF;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
-    font-size: 1rem;
-}
+    .input-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
 
-.input-group input:focus {
-    outline: none;
-    border-color: #0056b3;
-    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
-    background-color: #e6f2ff;
-}
+    .input-group input {
+        width: 30%;
+        padding: 10px;
+        border: 1px solid #007BFF;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        font-size: 1rem;
+    }
 
-        
+    .input-group input:focus {
+        outline: none;
+        border-color: #0056b3;
+        box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+        background-color: #e6f2ff;
+    }
 
-        
+    button {
+        background-color: dodgerblue;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
-        button {
-            background-color: dodgerblue;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+    button:hover {
+        background-color: cobalt;
+    }
 
-        button:hover {
-            background-color: cobalt;
-        }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: white;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: white;
-        }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
+    th {
+        background-color: #007BFF;
+        color: white;
+    }
 
-        th {
-            background-color: #007BFF;
-            color: white;
-        }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
+    tr:hover {
+        background-color: #ddd;
+    }
 
-        tr:hover {
-            background-color: #ddd;
-        }
+    .error-message {
+        color: red;
+        margin-top: 20px;
+    }
 
-        .error-message {
-            color: red;
-            margin-top: 20px;
-        }
+    footer {
+        background-color: #004080;
+        color: white;
+        padding: 10px;
+        text-align: center;
+    }
 
-        footer {
-            background-color: #004080;
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
-
-        footer p {
-            margin: 0;
-        }
-    </style>
+    footer p {
+        margin: 0;
+    }
+</style>
 </head>
 <body>
-	<header>
-		<h1>Search Flights</h1>
-	</header>
+    <header>
+        <h1>Search Flights</h1>
+    </header>
 
-	<main> <!-- Flight Search Form -->
-	<form>
-		<div class="input-group">
-			<label for="origin">Origin:</label> <input type="text" id="origin"
-				name="origin" placeholder="Enter Origin" required>
-		</div>
+    <main>
+        <!-- Flight Search Form -->
+        <form id="searchForm">
+            <div class="input-group">
+                <label for="origin">Origin:</label>
+                <input type="text" id="origin" name="origin" placeholder="Enter Origin" required>
+            </div>
 
-		<div class="input-group">
-			<label for="destination">Destination:</label> <input type="text"
-				id="destination" name="destination" placeholder="Enter Destination"
-				required>
-		</div>
+            <div class="input-group">
+                <label for="destination">Destination:</label>
+                <input type="text" id="destination" name="destination" placeholder="Enter Destination" required>
+            </div>
 
-		<div class="input-group">
-			<label for="travelDate">Travel Date:</label> <input type="date"
-				id="travelDate" name="travelDate" required>
-		</div>
+            <div class="input-group">
+                <label for="travelDate">Travel Date:</label>
+                <input type="date" id="travelDate" name="travelDate" required>
+            </div>
 
-		<button type="submit">Search Flights</button>
-	</form>
+            <button type="submit">Search Flights</button>
+        </form>
 
-	<!-- Display the search results -->
-	<table border="1" cellpadding="10" cellspacing="0"
-		style="margin-top: 20px;">
-		<thead>
-			<tr>
-				<th>Flight ID</th>
-				<th>Carrier Name</th>
-				<th>Origin</th>
-				<th>Destination</th>
-				<th>Airfare</th>
-				<th>Economy Seats</th>
-				<th>Business Seats</th>
-				<th>Executive Seats</th>
-				<th>Travel Date</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-			</tr>
-			<!-- <%
-				}
-				} else {
-			%> -->
-			<tr>
-				<td colspan="9">No flights found.</td>
-			</tr>
-			<!-- <%
-				}
-			%> -->
-		</tbody>
-	</table>
+        <!-- Display the search results -->
+        <table id="resultsTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Flight ID</th>
+                    <th>Carrier Name</th>
+                    <th>Origin</th>
+                    <th>Destination</th>
+                    <th>Airfare</th>
+                    <th>Economy Seats</th>
+                    <th>Business Seats</th>
+                    <th>Executive Seats</th>
+                    <th>Travel Date</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody id="resultsBody">
+                <!-- Flight rows will be populated here dynamically with JavaScript -->
+            </tbody>
+        </table>
 
-	<!-- Error message handling -->
-	<div>
-		<!-- <%
-			String errorMessage = (String) request.getAttribute("errorMessage");
-			if (errorMessage != null) {
-				out.println("<p style='color: red;'>" + errorMessage + "</p>");
-			}
-		%> -->
-	</div>
-	</main>
+        <p id="noResultsMessage" style="color: red; display: none;">No flights found.</p>
+    </main>
 
-	<footer>
-		<p>© 2024 Airline Management System</p>
-	</footer>
+    <footer>
+        <p>© 2024 Airline Management System</p>
+    </footer>
+
+    <script>
+        // Sample flight data
+        const flights = [
+            {
+                flightId: 'AI101',
+                carrierName: 'Air India',
+                origin: 'New York',
+                destination: 'London',
+                travelDate: '2024-12-01',
+                airfare: '$500',
+                economySeats: 30,
+                businessSeats: 10,
+                executiveSeats: 5
+            },
+            {
+                flightId: 'BA245',
+                carrierName: 'British Airways',
+                origin: 'Los Angeles',
+                destination: 'Tokyo',
+                travelDate: '2024-12-02',
+                airfare: '$650',
+                economySeats: 40,
+                businessSeats: 15,
+                executiveSeats: 8
+            },
+            {
+                flightId: 'UA300',
+                carrierName: 'United Airlines',
+                origin: 'San Francisco',
+                destination: 'Paris',
+                travelDate: '2024-12-05',
+                airfare: '$450',
+                economySeats: 20,
+                businessSeats: 7,
+                executiveSeats: 3
+            },
+            // Add more flight objects as needed
+        ];
+
+        // Store flights in local storage if not already stored
+        if (!localStorage.getItem('flights')) {
+            localStorage.setItem('flights', JSON.stringify(flights));
+        }
+
+        // Function to search for flights
+        function searchFlights(origin, destination, travelDate) {
+            const storedFlights = JSON.parse(localStorage.getItem('flights')) || [];
+            return storedFlights.filter(flight => 
+                flight.origin.toLowerCase().trim() === origin.toLowerCase().trim() &&
+                flight.destination.toLowerCase().trim() === destination.toLowerCase().trim()
+            );
+        }
+
+        // Function to display flights in the table
+        function displayFlights(flights) {
+            const resultsBody = document.getElementById('resultsBody');
+            resultsBody.innerHTML = ''; // Clear previous results
+
+            if (flights.length === 0) {
+                document.getElementById('resultsTable').style.display = 'none';
+                document.getElementById('noResultsMessage').style.display = 'block';
+                return;
+            }
+
+            document.getElementById('resultsTable').style.display = 'table';
+            document.getElementById('noResultsMessage').style.display = 'none';
+
+            flights.forEach(flight => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${flight.flightId}</td>
+                    <td>${flight.carrierName}</td>
+                    <td>${flight.origin}</td>
+                    <td>${flight.destination}</td>
+                    <td>${flight.airfare}</td>
+                    <td>${flight.economySeats}</td>
+                    <td>${flight.businessSeats}</td>
+                    <td>${flight.executiveSeats}</td>
+                    <td>${flight.travelDate}</td>
+                    <td><button onclick="editFlight('${flight.flightId}')">Edit</button></td>
+                `;
+                resultsBody.appendChild(row);
+            });
+        }
+
+        function editFlight(flightId) {
+        // Find the flight object based on the flightId
+        const flight = flights.find(f => f.flightId === flightId);
+
+        // Store the flight data in localStorage
+        localStorage.setItem('editFlightData', JSON.stringify(flight));
+
+        // Redirect to editFlight.html
+        window.location.href = 'editFlight.html';
+    }
+
+        // Event listener for the search form
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const origin = document.getElementById('origin').value;
+            const destination = document.getElementById('destination').value;
+            const travelDate = document.getElementById('travelDate').value;
+
+            const matchingFlights = searchFlights(origin, destination, travelDate);
+            displayFlights(matchingFlights);
+        });
+    </script>
 </body>
 </html>
